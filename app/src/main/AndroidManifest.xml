@@ -3,9 +3,7 @@
     package="com.android.example.virtualfoodassist">
 
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature
-        android:name="android.hardware.camera.ar"
-        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.ar" android:required="true" />
 
     <application
         android:allowBackup="true"

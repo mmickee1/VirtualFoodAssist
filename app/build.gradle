@@ -39,3 +39,9 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }
 apply plugin: 'com.google.ar.sceneform.plugin'
+
+
+sceneform.asset('sampledata/andy.obj',
+        'default',
+        'sampledata/andy.sfa',
+        'src/main/assets/andy')
