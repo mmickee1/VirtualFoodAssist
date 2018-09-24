@@ -2,6 +2,7 @@
     <string name="app_name">VirtualFoodAssist</string>
     <string name="camera">Camera</string>
     <string name="map">Map</string>
-    <string name="history">History</string>
     <string name="info">Info</string>
+    <string name="general_app_information">General App Information</string>
+    <string name="history">History</string>
 </resources>
