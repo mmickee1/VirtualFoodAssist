@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@android:color/holo_red_light"
+        android:background="@color/yellow400"
         android:gravity="center"
         android:text="@string/camera" />
 
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@android:color/holo_blue_light"
+        android:background="@color/redA200"
         android:gravity="center"
         android:text="@string/map" />
 
@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@android:color/holo_orange_light"
+        android:background="@color/lightblueA700"
         android:gravity="center"
         android:text="@string/history" />
 
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:background="@android:color/darker_gray"
+        android:background="@color/greenA200"
         android:gravity="center"
         android:text="@string/info" />
 
