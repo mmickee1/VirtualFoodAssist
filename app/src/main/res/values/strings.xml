@@ -5,4 +5,8 @@
     <string name="info">Info</string>
     <string name="general_app_information">General App Information</string>
     <string name="history">History</string>
+    <string name="made_by">This project was made by Mikael M and Kendy N for Metropolia UAS Android Sensor Based application course</string>
+    <string name="about_camera">about camera</string>
+    <string name="about_map">about map</string>
+    <string name="about_history">about history</string>
 </resources>
