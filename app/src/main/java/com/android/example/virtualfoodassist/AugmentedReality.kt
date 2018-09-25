@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -19,7 +20,7 @@ import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.ar_fragment.*
 import java.util.concurrent.CompletableFuture
 
-public class AugmentedReality : AppCompatActivity() {
+class AugmentedReality : AppCompatActivity() {
 
     lateinit var pasta: ModelRenderable
 
@@ -38,6 +39,7 @@ public class AugmentedReality : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.ar_fragment)
 
+        Log.d("test", "AR")
         Toast.makeText(this@AugmentedReality, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.arimage_fragment) as ArFragment
