@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         txt_camera.setOnClickListener {
-            // AugmentedReality()
             Log.d("clicked", "Camera")
             //placeholder.visibility = View.VISIBLE
             // ArHelper().setUp()
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        txt_info.setOnClickListener() {
+        txt_info.setOnClickListener {
             Log.d("clicked", "info")
             //TODO: this is working but having back button to go back to mainscreen is not functioning atm. fix it.
             supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Info()).commit()
