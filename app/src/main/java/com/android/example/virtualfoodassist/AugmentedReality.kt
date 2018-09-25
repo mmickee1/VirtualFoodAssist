@@ -37,7 +37,7 @@ class AugmentedReality : AppCompatActivity() {
         Log.d("Clicked", "AR here iam ")
         setContentView(R.layout.ar_fragment)
 
-        Log.d("test", "AR")
+        Log.d("test", "AugmentedReality 40")
         Toast.makeText(this@AugmentedReality, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.arimage_fragment) as ArFragment
