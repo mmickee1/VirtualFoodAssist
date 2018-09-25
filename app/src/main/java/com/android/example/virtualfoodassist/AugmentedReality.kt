@@ -36,7 +36,7 @@ public class AugmentedReality : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.ar_fragment)
 
         Toast.makeText(this@AugmentedReality, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
 
@@ -48,7 +48,7 @@ public class AugmentedReality : AppCompatActivity() {
                 .build()
         pasta.thenAccept { it -> this.pasta = it }
 
-        fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate (frameTime) }
+        fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
 
         AugmentedImageFragment()
     }
