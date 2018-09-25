@@ -1,5 +1,6 @@
 package com.android.example.virtualfoodassist
 
+import android.content.Intent
 import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -24,10 +25,10 @@ class MainActivity : AppCompatActivity() {
             // AugmentedReality()
             Log.d("clicked", "Camera")
             //placeholder.visibility = View.VISIBLE
-            ArHelper().setUp()
-            supportFragmentManager.beginTransaction().replace(R.id.placeholder, ArHelper.AugmentedImageFragmentREAL()).commit()
-            Toast.makeText(this, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
-            //ArHelper()
+            // ArHelper().setUp()
+            //supportFragmentManager.beginTransaction().replace(R.id.placeholder, ArHelper.AugmentedImageFragmentREAL()).commit()
+            val intent = Intent(this, AugmentedReality::class.java)
+            startActivity(intent)
         }
 
         txt_info.setOnClickListener() {
@@ -35,6 +36,11 @@ class MainActivity : AppCompatActivity() {
             //TODO: this is working but having back button to go back to mainscreen is not functioning atm. fix it.
             supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Info()).commit()
         }
+    }
+
+    fun augmentedReality(){
+        AugmentedReality()
+        Log.d("access", "accessing another class")
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

@@ -1,6 +1,7 @@
 package com.android.example.virtualfoodassist
 
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
+import com.android.example.virtualfoodassist.R.layout.ar_fragment
 import com.google.ar.core.AugmentedImage
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
@@ -34,14 +36,16 @@ class AugmentedReality : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("Clicked", "AR here iam ")
+        Log.d("test", "reached AR class")
         setContentView(R.layout.ar_fragment)
 
-        Log.d("test", "AR")
+        Log.d("test", "ar fragment found")
         Toast.makeText(this@AugmentedReality, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.arimage_fragment) as ArFragment
         fitToScanImageView = findViewById<ImageView>(R.id.fit_to_scan_img)
+
+        modelUri = Uri.parse("andy.sfb")
 
         val pasta = ModelRenderable.builder()
                 .setSource(this, Uri.parse("andy.sfb"))
@@ -49,7 +53,6 @@ class AugmentedReality : AppCompatActivity() {
         pasta.thenAccept { it -> this.pasta = it }
 
         fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
-
         AugmentedImageFragment()
     }
 
