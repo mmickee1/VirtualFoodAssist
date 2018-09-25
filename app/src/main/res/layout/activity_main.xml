@@ -6,44 +6,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:weightSum="4"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/txt_camera"
+    <FrameLayout
+        android:id="@+id/placeholder"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/yellow400"
-        android:gravity="center"
-        android:text="@string/camera" />
+        android:layout_height="match_parent"
+        android:visibility="gone">
 
-    <TextView
-        android:id="@+id/txt_map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/redA200"
-        android:gravity="center"
-        android:text="@string/map" />
+    </FrameLayout>
 
-    <TextView
-        android:id="@+id/txt_history"
+    <LinearLayout
+        android:id="@+id/main_container_child"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/lightblueA700"
-        android:gravity="center"
-        android:text="@string/history" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="4"
+        tools:ignore="UselessParent">
 
-    <TextView
-        android:id="@+id/txt_info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:background="@color/greenA200"
-        android:gravity="center"
-        android:text="@string/info" />
+
+        <TextView
+            android:id="@+id/txt_camera"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/yellow400"
+            android:gravity="center"
+            android:text="@string/camera" />
+
+        <TextView
+            android:id="@+id/txt_map"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/redA200"
+            android:gravity="center"
+            android:text="@string/map" />
+
+        <TextView
+            android:id="@+id/txt_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/lightblueA700"
+            android:gravity="center"
+            android:text="@string/history" />
+
+        <TextView
+            android:id="@+id/txt_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/greenA200"
+            android:gravity="center"
+            android:text="@string/info" />
+    </LinearLayout>
 
 
 </LinearLayout>
