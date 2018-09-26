@@ -86,14 +86,13 @@ public class AugmentedReality : AppCompatActivity() {
                         if (it.name == "pasta1" || it.name == "pasta2") {
                             imgNode.renderable = pastaRenderable
                             pastaFound = true
-                            Toast.makeText(this@AugmentedReality, "*Pasta*", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AugmentedReality, "*Click android for an pasta recipe*", Toast.LENGTH_SHORT).show()
                             ButtonClick.visibility = View.VISIBLE
                         } else {
                             imgNode.renderable = pastaRenderable
                         }
 
                         if (pastaFound){
-                            Toast.makeText(this@AugmentedReality, "Click android for an recipe", Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
                         }
                     }
