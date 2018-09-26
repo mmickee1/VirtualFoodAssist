@@ -48,9 +48,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("clicked", "History")
         }
 
-        txt_info.setOnClickListener{
-            Log.d("clicked", "Info")
-        }
     }
 
     fun augmentedReality(){
