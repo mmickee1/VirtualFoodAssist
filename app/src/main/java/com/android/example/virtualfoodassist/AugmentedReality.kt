@@ -24,8 +24,6 @@ import java.util.concurrent.CompletableFuture
 
 public class AugmentedReality : AppCompatActivity() {
 
-    lateinit var pasta: ModelRenderable
-
     lateinit var fragment: ArFragment
     lateinit var fitToScanImageView: ImageView
     lateinit var pastaRenderable: ModelRenderable
@@ -51,7 +49,7 @@ public class AugmentedReality : AppCompatActivity() {
         val pasta = ModelRenderable.builder()
                 .setSource(this, Uri.parse("andy.sfb"))
                 .build()
-        pasta.thenAccept { it -> this.pasta = it }
+        pasta.thenAccept { it -> this.pastaRenderable = it }
 
         fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
         AugmentedImageFragment()
@@ -85,7 +83,7 @@ public class AugmentedReality : AppCompatActivity() {
                         val imgNode = TransformableNode(fragment.transformationSystem)
                         imgNode.setParent(anchorNode)
 
-                        if (it.name == "pasta1") {
+                        if (it.name == "pasta1" || it.name == "pasta2") {
                             imgNode.renderable = pastaRenderable
                             pastaFound = true
                             Toast.makeText(this@AugmentedReality, "*Pasta*", Toast.LENGTH_SHORT).show()
@@ -103,6 +101,7 @@ public class AugmentedReality : AppCompatActivity() {
             }
         }
     }
+
 
     //object animator helper methods..
     private fun resume(objectAnimator: ObjectAnimator) {

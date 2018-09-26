@@ -13,6 +13,7 @@ import android.widget.TextView
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import com.google.ar.core.AugmentedImage
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
             //placeholder.visibility = View.VISIBLE
             //ArHelper().setUp()
             //supportFragmentManager.beginTransaction().replace(R.id.placeholder, ArHelper.AugmentedImageFragmentREAL()).commit()
+
             val intent = Intent(this, AugmentedReality::class.java)
             startActivity(intent)
         }

@@ -2,6 +2,7 @@ package com.android.example.virtualfoodassist
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ class AugmentedImageFragment: ArFragment(){
     private val SAMPLE_IMAGE_DATABASE ="sample_database.imgdb"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        Log.d("test", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
         val view = super.onCreateView(inflater, container, savedInstanceState)
         planeDiscoveryController.hide()
@@ -36,10 +38,13 @@ class AugmentedImageFragment: ArFragment(){
         // Pasta
         val pasta1 = assetManager.open("pasta/pasta1.jpg")
         val augmentedImageBitmapPasta1 = BitmapFactory.decodeStream(pasta1)
+        val pasta2 = assetManager.open("pasta/pasta2.jpg")
+        val augmentedImageBitmapPasta2 = BitmapFactory.decodeStream(pasta2)
 
         augmentedImageDb = AugmentedImageDatabase(session)
 
         augmentedImageDb.addImage("pasta1", augmentedImageBitmapPasta1)
+        augmentedImageDb.addImage("pasta2", augmentedImageBitmapPasta2)
 
         config.augmentedImageDatabase = augmentedImageDb
     }

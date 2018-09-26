@@ -34,6 +34,8 @@ class ArHelper : AppCompatActivity() {
 
     fun setUp() {
 
+        setContentView(R.layout.ar_fragment)
+        Toast.makeText(this@ArHelper, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
         fragment = supportFragmentManager?.findFragmentById(R.id.arimage_fragment) as ArFragment
         fitToScanImageView = findViewById<ImageView>(R.id.fit_to_scan_img)
 
@@ -45,9 +47,12 @@ class ArHelper : AppCompatActivity() {
         pasta.thenAccept { it -> this.pasta = it }
 
         fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
+        AugmentedImageFragment()
+
+        ButtonClick.visibility = View.GONE
     }
 
-    fun onUpdate(frameTime: FrameTime) {
+    private fun onUpdate(frameTime: FrameTime) {
         fragment.onUpdate(frameTime)
         val arFrame = fragment.arSceneView.arFrame
         if (arFrame == null || arFrame.camera.trackingState != TrackingState.TRACKING) {
@@ -63,7 +68,7 @@ class ArHelper : AppCompatActivity() {
 
                 }
                 TrackingState.TRACKING -> {
-                    val anchors = it.anchors
+                    var anchors = it.anchors
                     if (anchors.isEmpty()) {
                         fitToScanImageView.visibility = View.GONE
                         val pose = it.centerPose
@@ -77,6 +82,13 @@ class ArHelper : AppCompatActivity() {
                             imgNode.renderable = pastaRenderable
                             pastaFound = true
                             Toast.makeText(this@ArHelper, "*Pasta*", Toast.LENGTH_SHORT).show()
+                            ButtonClick.visibility = View.VISIBLE
+                        } else {
+                            imgNode.renderable = pastaRenderable
+                        }
+
+                        if (pastaFound){
+                            Toast.makeText(this@ArHelper, "Click android for an recipe", Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
                         }
                     }
