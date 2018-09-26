@@ -10,7 +10,8 @@
         android:id="@+id/arimage_fragment"
         android:name="com.android.example.virtualfoodassist.AugmentedImageFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent" >
+    </fragment>
 
 
     <ImageView

@@ -37,6 +37,8 @@ class ArHelper : AppCompatActivity() {
         fragment = supportFragmentManager?.findFragmentById(R.id.arimage_fragment) as ArFragment
         fitToScanImageView = findViewById<ImageView>(R.id.fit_to_scan_img)
 
+        modelUri = Uri.parse("andy.sfb")
+
         val pasta = ModelRenderable.builder()
                 .setSource(this, Uri.parse("andy.sfb"))
                 .build()

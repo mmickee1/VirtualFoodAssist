@@ -22,7 +22,7 @@ import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.ar_fragment.*
 import java.util.concurrent.CompletableFuture
 
-class AugmentedReality : AppCompatActivity() {
+public class AugmentedReality : AppCompatActivity() {
 
     lateinit var pasta: ModelRenderable
 
@@ -55,6 +55,8 @@ class AugmentedReality : AppCompatActivity() {
 
         fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
         AugmentedImageFragment()
+
+        ButtonClick.visibility = View.GONE
     }
 
     private fun onUpdate(frameTime: FrameTime) {
@@ -87,6 +89,13 @@ class AugmentedReality : AppCompatActivity() {
                             imgNode.renderable = pastaRenderable
                             pastaFound = true
                             Toast.makeText(this@AugmentedReality, "*Pasta*", Toast.LENGTH_SHORT).show()
+                            ButtonClick.visibility = View.VISIBLE
+                        } else {
+                            imgNode.renderable = pastaRenderable
+                        }
+
+                        if (pastaFound){
+                            Toast.makeText(this@AugmentedReality, "Click android for an recipe", Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
                         }
                     }
