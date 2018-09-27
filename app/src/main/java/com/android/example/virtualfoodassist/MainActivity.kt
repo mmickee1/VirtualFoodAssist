@@ -22,10 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //for back button but doesnt work like i want, trying something else atm.
-        //supportActionBar?.setDisplayShowHomeEnabled(true)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         txt_camera.setOnClickListener {
             Log.d("clicked", "Camera")
             //placeholder.visibility = View.VISIBLE
@@ -50,23 +46,6 @@ class MainActivity : AppCompatActivity() {
             Log.d("clicked", "History")
         }
 
-    }
-
-    fun augmentedReality(){
-        AugmentedReality()
-        Log.d("access", "accessing another class")
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val id: Int = item!!.itemId
-
-        if (id == android.R.id.home) {
-            //setContentView(R.layout.activity_main)
-            //needs onResume func and it didnt work as expected.. trying smth else
-            return true
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 
 }

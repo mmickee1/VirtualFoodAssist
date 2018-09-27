@@ -24,7 +24,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".AugmentedReality" />
-        <activity android:name=".ArHelper" />
 
         <meta-data
             android:name="com.google.ar.core"
