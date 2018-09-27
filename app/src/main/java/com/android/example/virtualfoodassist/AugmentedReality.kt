@@ -32,6 +32,8 @@ public class AugmentedReality : AppCompatActivity() {
     lateinit var renderableFuture: CompletableFuture<ModelRenderable>
     private var pastaFound = false
 
+    val pastaUrl = "https://www.valio.fi/reseptit/ryhmat/pastat/"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d("test", "reached AR class")
@@ -94,6 +96,11 @@ public class AugmentedReality : AppCompatActivity() {
 
                         if (pastaFound){
                             ButtonClick.visibility = View.VISIBLE
+                            ButtonClick.setOnClickListener {
+                                val intent = Intent(Intent.ACTION_VIEW)
+                                intent.data = Uri.parse(pastaUrl)
+                                startActivity(intent)
+                            }
                         }
                     }
                 }

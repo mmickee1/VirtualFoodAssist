@@ -25,10 +25,6 @@ class MainActivity : AppCompatActivity() {
 
         txt_camera.setOnClickListener {
             Log.d("clicked", "Camera")
-            //placeholder.visibility = View.VISIBLE
-            //ArHelper().setUp()
-            //supportFragmentManager.beginTransaction().replace(R.id.placeholder, ArHelper.AugmentedImageFragmentREAL()).commit()
-
             val intent = Intent(this, AugmentedReality::class.java)
             startActivity(intent)
         }
