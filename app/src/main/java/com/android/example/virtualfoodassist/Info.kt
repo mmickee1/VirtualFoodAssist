@@ -26,6 +26,7 @@ class Info() : Fragment() {
         //supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).setTitle(R.string.general_app_information)
 
         setHasOptionsMenu(true)
         return view

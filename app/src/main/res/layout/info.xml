@@ -7,7 +7,7 @@
     android:background="@color/greenA200"
     android:orientation="vertical">
 
-
+<!--
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:text="@string/general_app_information"
         android:textColor="@android:color/white"
         android:textSize="26sp"
-        tools:ignore="RtlSymmetry" />
+        tools:ignore="RtlSymmetry" /> -->
 
     <TextView
         android:layout_width="match_parent"
