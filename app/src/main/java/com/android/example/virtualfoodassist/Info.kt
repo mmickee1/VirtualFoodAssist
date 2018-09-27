@@ -20,13 +20,9 @@ class Info() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.info, container, false)
-
-        //for back button but doesnt work like i want, trying something else atm.
-        //supportActionBar?.setDisplayShowHomeEnabled(true)
-        //supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).getSupportActionBar()?.setDisplayShowHomeEnabled(true)
-
+        (activity as AppCompatActivity).setTitle(R.string.general_app_information)
         setHasOptionsMenu(true)
         return view
     }
@@ -71,8 +67,6 @@ class Info() : Fragment() {
                 //NavUtils.navigateUpTo()
                 /*  val upIntent = Intent(activity, MainActivity::class.java)
                   if (NavUtils.shouldUpRecreateTask(activity!!, upIntent)) {
-
-
                       activity!!.finish()
                   } else {
                       NavUtils.navigateUpTo(activity!!, upIntent)
