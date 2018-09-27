@@ -1,0 +1,16 @@
+# Exported from 3D Builder
+
+newmtl mat21
+Kd 1.000000 1.000000 1.000000
+
+newmtl mat18
+Kd 1.000000 0.800000 0.530000
+
+newmtl mat8
+Kd 0.960000 0.260000 0.210000
+
+newmtl mat20
+Kd 0.470000 0.330000 0.280000
+
+newmtl mat9
+Kd 0.550000 0.760000 0.290000
