@@ -1,6 +1,7 @@
 package com.android.example.virtualfoodassist
 
 import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
@@ -11,9 +12,14 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
+import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
+import android.support.v4.content.ContextCompat.getSystemService
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,20 +27,18 @@ import kotlinx.android.synthetic.main.location.*
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
-class Location : AppCompatActivity(), LocationListener {
-
+class Location : Fragment(), LocationListener {
 
     @SuppressLint("ObsoleteSdkInt")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val ctx = applicationContext
-        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
+        val view = inflater.inflate(R.layout.location, container, false)
 
-        setContentView(R.layout.location)
 
+        val map = view.findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
         map.setBuiltInZoomControls(true)
         map.setMultiTouchControls(true)
@@ -42,10 +46,13 @@ class Location : AppCompatActivity(), LocationListener {
         map.controller.setCenter(GeoPoint(60.17, 24.95))
 
 
-        val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        if ((Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 0)
-            ActivityCompat.requestPermissions(this, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION), 0)
+        val ctx =  (activity as AppCompatActivity).applicationContext
+        Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
+
+        val lm =  (activity as AppCompatActivity).getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if ((Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(activity as Activity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(activity as Activity, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 0)
+            ActivityCompat.requestPermissions(activity as Activity, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION), 0)
         }
         lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 1f, this)
 
@@ -55,7 +62,11 @@ class Location : AppCompatActivity(), LocationListener {
         myLocation.enableFollowLocation()
         map.overlays.add(myLocation)
         //map.animate() to myLocation.myLocation
+        return view
+    }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -71,8 +82,6 @@ class Location : AppCompatActivity(), LocationListener {
 
         map.animate().to(geoPoint)
         map.mapCenter
-
-        Toast.makeText(this, "Location obtained", Toast.LENGTH_LONG).show()
     }
 
     override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {

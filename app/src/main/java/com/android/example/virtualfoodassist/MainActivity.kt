@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
 
         txt_map.setOnClickListener {
             Log.d("clicked", "Map")
-            //supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Location()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Location()).commit()
             //val intent = Intent(this, Location::class.java)
             //startActivity(intent)
         }
