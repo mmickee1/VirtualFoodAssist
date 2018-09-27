@@ -16,7 +16,6 @@ class AugmentedImageFragment: ArFragment(){
     private val SAMPLE_IMAGE_DATABASE ="sample_database.imgdb"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.d("test", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
         val view = super.onCreateView(inflater, container, savedInstanceState)
         planeDiscoveryController.hide()

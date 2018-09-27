@@ -6,17 +6,17 @@ import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
-import com.android.example.virtualfoodassist.R.layout.ar_fragment
 import com.google.ar.core.AugmentedImage
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.FrameTime
+import com.google.ar.sceneform.HitTestResult
+import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.rendering.ModelRenderable
-import com.google.ar.sceneform.rendering.PlaneRenderer
-import com.google.ar.sceneform.rendering.Texture
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.ar_fragment.*
@@ -27,9 +27,8 @@ public class AugmentedReality : AppCompatActivity() {
     lateinit var fragment: ArFragment
     lateinit var fitToScanImageView: ImageView
     lateinit var pastaRenderable: ModelRenderable
-    lateinit var testRenderable: ModelRenderable
     lateinit var renderableFuture: CompletableFuture<ModelRenderable>
-    private var pastaFound = false
+
 
     val pastaUrl = "https://www.valio.fi/reseptit/ryhmat/pastat/"
 
@@ -58,6 +57,7 @@ public class AugmentedReality : AppCompatActivity() {
     }
 
     private fun onUpdate(frameTime: FrameTime) {
+
         fragment.onUpdate(frameTime)
         val arFrame = fragment.arSceneView.arFrame
         if (arFrame == null || arFrame.camera.trackingState != TrackingState.TRACKING) {
@@ -85,39 +85,30 @@ public class AugmentedReality : AppCompatActivity() {
 
                         if (it.name == "pasta1" || it.name == "pasta2") {
                             imgNode.renderable = pastaRenderable
-                            pastaFound = true
-                            Toast.makeText(this@AugmentedReality, "*Click android for an pasta recipe*", Toast.LENGTH_SHORT).show()
-                            ButtonClick.visibility = View.VISIBLE
-                        } else {
-                            imgNode.renderable = pastaRenderable
+                            imgNode.setOnTapListener(
+                                    object : Node.OnTapListener {
+                                        override fun onTap(hitTestResult: HitTestResult?, motionEvent: MotionEvent?) {
+
+                                            val intent = Intent(Intent.ACTION_VIEW)
+                                            intent.data = Uri.parse(pastaUrl)
+                                            startActivity(intent)
+                                        }
+                                    }
+                            )
+                            Toast.makeText(this@AugmentedReality, "*Click 3D object for an pasta recipe*", Toast.LENGTH_SHORT).show()
+                            // Button will start mapview
+                            //ButtonClick.visibility = View.VISIBLE
                         }
 
-                        if (pastaFound){
-                            ButtonClick.visibility = View.VISIBLE
-                            ButtonClick.setOnClickListener {
-                                val intent = Intent(Intent.ACTION_VIEW)
-                                intent.data = Uri.parse(pastaUrl)
-                                startActivity(intent)
-                            }
-                        }
+
+
+
+
+
+
                     }
                 }
             }
         }
-    }
-
-
-    //object animator helper methods..
-    private fun resume(objectAnimator: ObjectAnimator) {
-        objectAnimator.resume()
-    }
-
-    private fun pause(objectAnimator: ObjectAnimator) {
-        objectAnimator.pause()
-
-    }
-
-    private fun start(objectAnimator: ObjectAnimator) {
-        objectAnimator.start()
     }
 }
