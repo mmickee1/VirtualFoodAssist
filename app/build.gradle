@@ -45,3 +45,9 @@ sceneform.asset('sampledata/andy.obj',
         'default',
         'sampledata/andy.sfa',
         'src/main/assets/andy')
+
+
+sceneform.asset('sampledata/pastaObject3.obj',
+        'default',
+        'sampledata/pastaObject3.sfa',
+        'src/main/assets/pastaObject3')

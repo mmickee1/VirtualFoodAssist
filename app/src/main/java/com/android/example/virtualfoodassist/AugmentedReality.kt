@@ -28,7 +28,6 @@ public class AugmentedReality : AppCompatActivity() {
     lateinit var fitToScanImageView: ImageView
     lateinit var pastaRenderable: ModelRenderable
     lateinit var testRenderable: ModelRenderable
-    lateinit var modelUri: Uri
     lateinit var renderableFuture: CompletableFuture<ModelRenderable>
     private var pastaFound = false
 
@@ -46,10 +45,9 @@ public class AugmentedReality : AppCompatActivity() {
         fragment = supportFragmentManager.findFragmentById(R.id.arimage_fragment) as ArFragment
         fitToScanImageView = findViewById<ImageView>(R.id.fit_to_scan_img)
 
-        modelUri = Uri.parse("andy.sfb")
-
+        // Pasta
         val pasta = ModelRenderable.builder()
-                .setSource(this, Uri.parse("andy.sfb"))
+                .setSource(this, Uri.parse("pastaObject3.sfb"))
                 .build()
         pasta.thenAccept { it -> this.pastaRenderable = it }
 
