@@ -46,10 +46,10 @@ class Location : Fragment(), LocationListener {
         map.controller.setCenter(GeoPoint(60.17, 24.95))
 
 
-        val ctx =  (activity as AppCompatActivity).applicationContext
+        val ctx = (activity as AppCompatActivity).applicationContext
         Configuration.getInstance().load(ctx, PreferenceManager.getDefaultSharedPreferences(ctx))
 
-        val lm =  (activity as AppCompatActivity).getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val lm = (activity as AppCompatActivity).getSystemService(Context.LOCATION_SERVICE) as LocationManager
         if ((Build.VERSION.SDK_INT >= 23 && ContextCompat.checkSelfPermission(activity as Activity, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(activity as Activity, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 0)
             ActivityCompat.requestPermissions(activity as Activity, arrayOf(android.Manifest.permission.ACCESS_COARSE_LOCATION), 0)
@@ -72,7 +72,7 @@ class Location : Fragment(), LocationListener {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onLocationChanged(p0: Location?) {
         Log.d("GEOLOCATION", "new latitude: ${p0?.latitude} and longitude: ${p0?.longitude}")
-        txt_info.text = "Latitude: ${p0?.latitude}, Longitude: ${p0?.longitude}, Speed: ${p0?.speedAccuracyMetersPerSecond}, Altitude: ${p0?.altitude}"
+        txt_map_info.text = "Latitude: ${p0?.latitude}, Longitude: ${p0?.longitude}, Speed: ${p0?.speedAccuracyMetersPerSecond}, Altitude: ${p0?.altitude}"
 
         val latitude = p0!!.latitude
         val longitude = p0.longitude

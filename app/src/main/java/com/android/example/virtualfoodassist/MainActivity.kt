@@ -31,12 +31,12 @@ class MainActivity : AppCompatActivity() {
 
         txt_info.setOnClickListener {
             Log.d("clicked", "info")
-            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Info()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Info()).addToBackStack(null).commit()
         }
 
         txt_map.setOnClickListener {
             Log.d("clicked", "Map")
-            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Location()).commit()
+            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Location()).addToBackStack(null).commit()
             //val intent = Intent(this, Location::class.java)
             //startActivity(intent)
         }
