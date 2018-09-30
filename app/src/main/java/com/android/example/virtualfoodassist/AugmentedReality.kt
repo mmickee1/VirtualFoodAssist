@@ -50,6 +50,8 @@ public class AugmentedReality : AppCompatActivity() {
                 .build()
         pasta.thenAccept { it -> this.pastaRenderable = it }
 
+        // Pizza
+
         fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
         AugmentedImageFragment()
 
@@ -83,7 +85,9 @@ public class AugmentedReality : AppCompatActivity() {
                         val imgNode = TransformableNode(fragment.transformationSystem)
                         imgNode.setParent(anchorNode)
 
-                        if (it.name == "pasta1" || it.name == "pasta2") {
+                        if (it.name == "pasta1" || it.name == "pasta2" || it.name == "pasta3" || it.name == "pasta4" ||
+                                it.name == "pasta5" || it.name == "pasta6" || it.name == "pasta7" || it.name == "pasta8" ||
+                                it.name == "pasta9" || it.name == "pasta10" || it.name == "pasta11" || it.name == "pasta12") {
                             imgNode.renderable = pastaRenderable
                             imgNode.setOnTapListener(
                                     object : Node.OnTapListener {
@@ -95,7 +99,7 @@ public class AugmentedReality : AppCompatActivity() {
                                         }
                                     }
                             )
-                            Toast.makeText(this@AugmentedReality, "*Click 3D object for an pasta recipe*", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pasta recipe*", Toast.LENGTH_SHORT).show()
                             // Button will start mapview
                             //ButtonClick.visibility = View.VISIBLE
                         }
