@@ -27,10 +27,12 @@ public class AugmentedReality : AppCompatActivity() {
     lateinit var fragment: ArFragment
     lateinit var fitToScanImageView: ImageView
     lateinit var pastaRenderable: ModelRenderable
+    lateinit var pizzaRenderable: ModelRenderable
     lateinit var renderableFuture: CompletableFuture<ModelRenderable>
 
 
     val pastaUrl = "https://www.valio.fi/reseptit/ryhmat/pastat/"
+    val pizzaUrl = "https://www.valio.fi/reseptit/pizza/"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +53,10 @@ public class AugmentedReality : AppCompatActivity() {
         pasta.thenAccept { it -> this.pastaRenderable = it }
 
         // Pizza
+        val pizza = ModelRenderable.builder()
+                .setSource(this, Uri.parse("pizzaObject.sfb"))
+                .build()
+        pizza.thenAccept{ it -> this.pizzaRenderable = it }
 
         fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
         AugmentedImageFragment()
@@ -100,11 +106,27 @@ public class AugmentedReality : AppCompatActivity() {
                                     }
                             )
                             Toast.makeText(this@AugmentedReality, "*Click 3D object for a pasta recipe*", Toast.LENGTH_SHORT).show()
-                            // Button will start mapview
                             //ButtonClick.visibility = View.VISIBLE
                         }
 
 
+                        else if (it.name == "pizza1" || it.name == "pizza2" || it.name == "pizza3" || it.name == "pizza4" ||
+                                it.name == "pizza5" || it.name == "pizza6" || it.name == "pizza7" || it.name == "pizza8" ||
+                                it.name == "pizza9" || it.name == "pizza10"){
+                            imgNode.renderable = pizzaRenderable
+                            imgNode.setOnTapListener(
+                                    object : Node.OnTapListener {
+                                        override fun onTap(hitTestResult: HitTestResult?, motionEvent: MotionEvent?) {
+
+                                            val intent = Intent(Intent.ACTION_VIEW)
+                                            intent.data = Uri.parse(pizzaUrl)
+                                            startActivity(intent)
+                                        }
+                                    }
+                            )
+                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pizza recipe*", Toast.LENGTH_SHORT).show()
+                            //ButtonClick.visibility = View.VISIBLE
+                        }
 
 
 

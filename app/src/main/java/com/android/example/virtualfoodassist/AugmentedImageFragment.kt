@@ -59,11 +59,31 @@ class AugmentedImageFragment: ArFragment(){
         val augmentedImageBitmapPasta11 = BitmapFactory.decodeStream(pasta11)
         val pasta12 = assetManager.open("pasta/pasta12.jpg")
         val augmentedImageBitmapPasta12 = BitmapFactory.decodeStream(pasta12)
-        val pasta13 = assetManager.open("pasta/pasta12.jpg")
+        val pasta13 = assetManager.open("pasta/pasta13.jpg")
         val augmentedImageBitmapPasta13 = BitmapFactory.decodeStream(pasta13)
 
 
         // Pizza
+        val pizza1 = assetManager.open("pizza/pizza1.jpg")
+        val augmentedImageBitmapPizza1 = BitmapFactory.decodeStream(pizza1)
+        val pizza2 = assetManager.open("pizza/pizza2.jpg")
+        val augmentedImageBitmapPizza2 = BitmapFactory.decodeStream(pizza2)
+        val pizza3 = assetManager.open("pizza/pizza3.jpg")
+        val augmentedImageBitmapPizza3 = BitmapFactory.decodeStream(pizza3)
+        val pizza4 = assetManager.open("pizza/pizza4.jpg")
+        val augmentedImageBitmapPizza4 = BitmapFactory.decodeStream(pizza4)
+        val pizza5 = assetManager.open("pizza/pizza5.jpg")
+        val augmentedImageBitmapPizza5 = BitmapFactory.decodeStream(pizza5)
+        val pizza6 = assetManager.open("pizza/pizza6.jpg")
+        val augmentedImageBitmapPizza6 = BitmapFactory.decodeStream(pizza6)
+        val pizza7 = assetManager.open("pizza/pizza7.jpg")
+        val augmentedImageBitmapPizza7 = BitmapFactory.decodeStream(pizza7)
+        val pizza8 = assetManager.open("pizza/pizza8.jpg")
+        val augmentedImageBitmapPizza8 = BitmapFactory.decodeStream(pizza8)
+        val pizza9 = assetManager.open("pizza/pizza9.jpg")
+        val augmentedImageBitmapPizza9 = BitmapFactory.decodeStream(pizza9)
+        val pizza10 = assetManager.open("pizza/pizza10.jpg")
+        val augmentedImageBitmapPizza10 = BitmapFactory.decodeStream(pizza10)
 
 
         augmentedImageDb = AugmentedImageDatabase(session)
@@ -81,6 +101,17 @@ class AugmentedImageFragment: ArFragment(){
         augmentedImageDb.addImage("pasta11", augmentedImageBitmapPasta11)
         augmentedImageDb.addImage("pasta12", augmentedImageBitmapPasta12)
         augmentedImageDb.addImage("pasta13", augmentedImageBitmapPasta13)
+
+        augmentedImageDb.addImage("pizza1", augmentedImageBitmapPizza1)
+        augmentedImageDb.addImage("pizza2", augmentedImageBitmapPizza2)
+        augmentedImageDb.addImage("pizza3", augmentedImageBitmapPizza3)
+        augmentedImageDb.addImage("pizza4", augmentedImageBitmapPizza4)
+        augmentedImageDb.addImage("pizza5", augmentedImageBitmapPizza5)
+        augmentedImageDb.addImage("pizza6", augmentedImageBitmapPizza6)
+        augmentedImageDb.addImage("pizza7", augmentedImageBitmapPizza7)
+        augmentedImageDb.addImage("pizza8", augmentedImageBitmapPizza8)
+        augmentedImageDb.addImage("pizza9", augmentedImageBitmapPizza9)
+        augmentedImageDb.addImage("pizza10", augmentedImageBitmapPizza10)
 
         config.augmentedImageDatabase = augmentedImageDb
     }
