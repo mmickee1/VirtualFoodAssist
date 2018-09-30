@@ -1,7 +1,7 @@
 # VirtualFoodAssist
 Metropolia Mobile App Sensor Course Project
 
-The main idea of VirtualFoodAssist project is for users to use phone camera app to scan food pictures and search for recipes for it. For each food (for example pasta or pizza) has its own 3D model. It also tell users where are the near food stores after scanning.
+The main idea of VirtualFoodAssist project is for users to use phone camera app to scan food pictures and search for recipes for it. For each food (for example pasta or pizza) has its own 3D model which will pop up to screen as AR view. It also tell users where are the near food stores after scanning.
 
 ---
 
