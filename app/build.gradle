@@ -53,3 +53,8 @@ sceneform.asset('sampledata/pastaObject3.obj',
         'default',
         'sampledata/pastaObject3.sfa',
         'src/main/assets/pastaObject3')
+
+sceneform.asset('sampledata/pizzaObject.obj',
+        'default',
+        'sampledata/pizzaObject.sfa',
+        'src/main/assets/pizzaObject')
