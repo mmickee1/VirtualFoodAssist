@@ -57,11 +57,11 @@ This way the MainActivity class looks more clear and readable for human eyes and
 
 *Week 1 result*
 
-![alt text](![387352a2-2cbd-46bf-ba98-176280926957](https://user-images.githubusercontent.com/23027158/46259482-bd287b80-c4e2-11e8-9398-4865a0164631.jpg)
+![387352a2-2cbd-46bf-ba98-176280926957](https://user-images.githubusercontent.com/23027158/46259482-bd287b80-c4e2-11e8-9398-4865a0164631.jpg)
 
-![alt text](![1a11a352-622a-4aaa-863d-c9b24e6cc28a](https://user-images.githubusercontent.com/23027158/46259510-0678cb00-c4e3-11e8-9150-0f78c76afbe5.jpg)
+![1a11a352-622a-4aaa-863d-c9b24e6cc28a](https://user-images.githubusercontent.com/23027158/46259510-0678cb00-c4e3-11e8-9150-0f78c76afbe5.jpg)
 
-![alt text](![8946272e-0a4a-4742-832c-679b4881a2ca](https://user-images.githubusercontent.com/23027158/46259516-1bedf500-c4e3-11e8-9c0c-0845d1c846aa.jpg)
+![8946272e-0a4a-4742-832c-679b4881a2ca](https://user-images.githubusercontent.com/23027158/46259516-1bedf500-c4e3-11e8-9c0c-0845d1c846aa.jpg)
 
 ---
 
