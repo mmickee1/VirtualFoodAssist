@@ -27,6 +27,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
-        android:text="Recipe" />
+        android:text="Map to nearest store" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/backButton"
+        app:backgroundTint="@color/colorPrimaryDark"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:layout_margin="45px"
+        app:srcCompat="@drawable/ic_home" />
 
 </FrameLayout>

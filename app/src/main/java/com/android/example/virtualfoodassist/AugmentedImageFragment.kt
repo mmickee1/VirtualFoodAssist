@@ -2,6 +2,7 @@ package com.android.example.virtualfoodassist
 
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -20,8 +21,9 @@ class AugmentedImageFragment: ArFragment(){
         val view = super.onCreateView(inflater, container, savedInstanceState)
         planeDiscoveryController.hide()
         planeDiscoveryController.setInstructionView(null)
-        //arSceneView.planeRenderer.isEnabled = false
+        arSceneView.planeRenderer.isEnabled = false
         return view
+
     }
 
     override fun getSessionConfiguration(session: Session?): Config {

@@ -4,10 +4,13 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
 import com.google.ar.core.AugmentedImage
@@ -39,8 +42,6 @@ public class AugmentedReality : AppCompatActivity() {
         Log.d("test", "reached AR class")
         setContentView(R.layout.ar_fragment)
 
-        Log.d("test", "ar fragment found")
-
         Toast.makeText(this@AugmentedReality, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.arimage_fragment) as ArFragment
@@ -62,6 +63,11 @@ public class AugmentedReality : AppCompatActivity() {
         AugmentedImageFragment()
 
         ButtonClick.visibility = View.GONE
+
+        backButton.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     private fun onUpdate(frameTime: FrameTime) {
@@ -106,7 +112,7 @@ public class AugmentedReality : AppCompatActivity() {
                                     }
                             )
                             Toast.makeText(this@AugmentedReality, "*Click 3D object for a pasta recipe*", Toast.LENGTH_SHORT).show()
-                            //ButtonClick.visibility = View.VISIBLE
+                            ButtonClick.visibility = View.VISIBLE
                         }
 
 
@@ -125,7 +131,7 @@ public class AugmentedReality : AppCompatActivity() {
                                     }
                             )
                             Toast.makeText(this@AugmentedReality, "*Click 3D object for a pizza recipe*", Toast.LENGTH_SHORT).show()
-                            //ButtonClick.visibility = View.VISIBLE
+                            ButtonClick.visibility = View.VISIBLE
                         }
 
 

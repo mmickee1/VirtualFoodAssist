@@ -33,7 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AugmentedReality" />
+        <activity android:name=".AugmentedReality"
+            android:parentActivityName=".MainActivity"/>
         <activity android:name=".Location" />
 
         <meta-data
