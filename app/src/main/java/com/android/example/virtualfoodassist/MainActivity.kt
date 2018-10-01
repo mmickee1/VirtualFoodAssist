@@ -43,6 +43,7 @@ class MainActivity : AppCompatActivity() {
 
         txt_history.setOnClickListener {
             Log.d("clicked", "History")
+            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, History()).addToBackStack(null).commit()
         }
 
     }

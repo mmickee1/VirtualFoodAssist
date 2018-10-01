@@ -3,6 +3,7 @@ package com.android.example.virtualfoodassist
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.location.LocationListener
@@ -18,6 +19,7 @@ import android.support.v4.content.ContextCompat.getSystemService
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -36,13 +38,17 @@ class Location : Fragment(), LocationListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.location, container, false)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).setTitle(R.string.location)
+        setHasOptionsMenu(true)
 
 
         val map = view.findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
         map.setBuiltInZoomControls(true)
         map.setMultiTouchControls(true)
-        map.controller.setZoom(9.0)
+        map.controller.setZoom(12.0)
         map.controller.setCenter(GeoPoint(60.17, 24.95))
 
 
@@ -63,10 +69,6 @@ class Location : Fragment(), LocationListener {
         map.overlays.add(myLocation)
         //map.animate() to myLocation.myLocation
         return view
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -93,4 +95,24 @@ class Location : Fragment(), LocationListener {
     override fun onProviderDisabled(p0: String?) {
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home
+            -> {
+                //NavUtils.navigateUpFromSameTask(Info());
+                //NavUtils.navigateUpTo()
+                /*  val upIntent = Intent(activity, MainActivity::class.java)
+                  if (NavUtils.shouldUpRecreateTask(activity!!, upIntent)) {
+                      activity!!.finish()
+                  } else {
+                      NavUtils.navigateUpTo(activity!!, upIntent)
+                  } */
+                val i = Intent(activity, MainActivity::class.java)
+                startActivity(i)
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 }

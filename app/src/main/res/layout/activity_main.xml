@@ -32,7 +32,9 @@
             android:layout_weight="1"
             android:background="@color/yellow400"
             android:gravity="center"
-            android:text="@string/camera" />
+            android:text="@string/camera"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_map"
@@ -41,7 +43,9 @@
             android:layout_weight="1"
             android:background="@color/redA200"
             android:gravity="center"
-            android:text="@string/map" />
+            android:text="@string/map"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_history"
@@ -50,16 +54,20 @@
             android:layout_weight="1"
             android:background="@color/lightblueA700"
             android:gravity="center"
-            android:text="@string/history" />
+            android:text="@string/history"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/txt_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:textSize="26sp"
             android:background="@color/greenA200"
             android:gravity="center"
-            android:text="@string/info" />
+            android:text="@string/info"
+            android:textStyle="bold" />
     </LinearLayout>
 
 
