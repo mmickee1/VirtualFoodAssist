@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             val background = object : Thread(){
                 override fun run() {
                     try {
-                        Thread.sleep(500)
+                        Thread.sleep(2500)
 
                         val intent = Intent(baseContext, AugmentedReality::class.java)
                         startActivity(intent)
