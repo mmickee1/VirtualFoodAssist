@@ -31,8 +31,6 @@ public class AugmentedReality : AppCompatActivity() {
     lateinit var fitToScanImageView: ImageView
     lateinit var pastaRenderable: ModelRenderable
     lateinit var pizzaRenderable: ModelRenderable
-    lateinit var renderableFuture: CompletableFuture<ModelRenderable>
-
 
     val pastaUrl = "https://www.valio.fi/reseptit/ryhmat/pastat/"
     val pizzaUrl = "https://www.valio.fi/reseptit/pizza/"

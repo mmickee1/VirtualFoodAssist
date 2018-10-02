@@ -16,6 +16,7 @@ import android.view.MenuItem
 import android.view.View
 import com.google.ar.core.AugmentedImage
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -25,8 +26,20 @@ class MainActivity : AppCompatActivity() {
 
         txt_camera.setOnClickListener {
             Log.d("clicked", "Camera")
-            val intent = Intent(this, AugmentedReality::class.java)
-            startActivity(intent)
+            setContentView(R.layout.splash)
+            val background = object : Thread(){
+                override fun run() {
+                    try {
+                        Thread.sleep(500)
+
+                        val intent = Intent(baseContext, AugmentedReality::class.java)
+                        startActivity(intent)
+                    } catch (e: Exception){
+                        e.printStackTrace()
+                    }
+                }
+            }
+            background.start()
         }
 
         txt_info.setOnClickListener {
@@ -45,6 +58,5 @@ class MainActivity : AppCompatActivity() {
             Log.d("clicked", "History")
             supportFragmentManager.beginTransaction().replace(R.id.main_container_child, History()).addToBackStack(null).commit()
         }
-
     }
 }
