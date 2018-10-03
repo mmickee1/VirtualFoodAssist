@@ -47,17 +47,8 @@ class History() : Fragment() {
             builder.setTitle("Clear history")
             builder.setMessage("Clear history of scanned files?")
             builder.setPositiveButton("YES") { dialog, which ->
-                /* context!!.openFileOutput(filename,
-                         Context.MODE_APPEND).use {
-                     val txt = " "// + "\n"
-                     it.write(txt.toByteArray())
-                 }
-                 txtShowNote.text = context!!.openFileInput(filename).bufferedReader().use {
-                     it.readText()
-                 }
-                 txtShowNote.textSize = 30F */
-                DBHandler(this!!.context!!).deleteData()
-                DBHandler(this!!.context!!).readData()
+                DBHandler(this.context!!).deleteData()
+                DBHandler(this.context!!).readData()
                 txtShowNote.text = ""
                 for (i in 0..data.size - 1) {
                     txtShowNote.append(data.get(i).name + "\n")
