@@ -111,7 +111,7 @@ public class AugmentedReality : AppCompatActivity() {
                                         }
                                     }
                             )
-                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pasta recipe*", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pasta recipe*", Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
 
                             val food = Food("Pasta")
@@ -133,7 +133,7 @@ public class AugmentedReality : AppCompatActivity() {
                                         }
                                     }
                             )
-                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pizza recipe*", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pizza recipe*", Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
                             val food = Food("Pizza")
                             db.insertData(food)

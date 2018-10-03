@@ -1,21 +1,11 @@
 package com.android.example.virtualfoodassist
 
 import android.content.Intent
-import android.opengl.Visibility
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.v4.app.FragmentManager
 import android.util.Log
-import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_main.*
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.view.Menu
-import android.view.MenuItem
-import android.view.View
-import com.google.ar.core.AugmentedImage
-import kotlinx.android.synthetic.main.activity_main.*
+
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
