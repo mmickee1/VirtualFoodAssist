@@ -11,4 +11,7 @@
     <string name="about_history">Lists all the scanned item for you to ease remembering what you wanted to eat next or what you ate last time you used this app!</string>
     <string name="location">Location</string>
     <string name="placeholder_text">Here comes the text!</string>
+    <string name="clear_history">Clear history</string>
+    <string name="no_scanned_items">No scanned items</string>
+    <string name="no_scanned_items_yet">No scanned items yet!</string>
 </resources>

@@ -1,18 +1,16 @@
 package com.android.example.virtualfoodassist
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import com.android.example.virtualfoodassist.DB.DBHandler
+import com.android.example.virtualfoodassist.DB.Food
 import com.google.ar.core.AugmentedImage
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
@@ -23,8 +21,9 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.ar_fragment.*
-import java.util.concurrent.CompletableFuture
+import java.io.File
 
+@Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA", "CanBeVal")
 public class AugmentedReality : AppCompatActivity() {
 
     lateinit var fragment: ArFragment
@@ -34,6 +33,9 @@ public class AugmentedReality : AppCompatActivity() {
 
     val pastaUrl = "https://www.valio.fi/reseptit/ryhmat/pastat/"
     val pizzaUrl = "https://www.valio.fi/reseptit/pizza/"
+
+    private val contexti = this
+    var db = DBHandler(contexti)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,6 +113,9 @@ public class AugmentedReality : AppCompatActivity() {
                             )
                             Toast.makeText(this@AugmentedReality, "*Click 3D object for a pasta recipe*", Toast.LENGTH_SHORT).show()
                             ButtonClick.visibility = View.VISIBLE
+
+                            val food = Food("Pasta")
+                            db.insertData(food)
                         }
 
 
@@ -130,6 +135,8 @@ public class AugmentedReality : AppCompatActivity() {
                             )
                             Toast.makeText(this@AugmentedReality, "*Click 3D object for a pizza recipe*", Toast.LENGTH_SHORT).show()
                             ButtonClick.visibility = View.VISIBLE
+                            val food = Food("Pizza")
+                            db.insertData(food)
                         }
 
 

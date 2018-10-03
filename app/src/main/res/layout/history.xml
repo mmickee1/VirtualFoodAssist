@@ -11,6 +11,22 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:padding="8dp"
-        android:text="@string/placeholder_text" />
+        android:text="@string/no_scanned_items_yet" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/btn_clear_history"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="32dp"
+            android:text="@string/clear_history"/>
+    </RelativeLayout>
+
+
 
 </LinearLayout>
