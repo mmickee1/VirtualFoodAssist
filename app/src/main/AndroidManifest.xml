@@ -37,7 +37,6 @@
         </activity>
         <activity android:name=".AugmentedReality"
             android:parentActivityName=".MainActivity"/>
-        <activity android:name=".Location" />
 
         <meta-data
             android:name="com.google.ar.core"

@@ -5,6 +5,10 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.hardware.Sensor
+import android.hardware.SensorEvent
+import android.hardware.SensorEventListener
+import android.hardware.SensorManager
 import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
@@ -22,6 +26,10 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.Animation
+import android.view.animation.RotateAnimation
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.location.FusedLocationProviderClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -32,7 +40,12 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
-class Location : Fragment(), LocationListener {
+class Location : Fragment(), LocationListener, SensorEventListener {
+
+    private var imageCompass: ImageView? = null
+    private var currentDegree = 0f
+    private var mCompassSensorManager: SensorManager? = null
+    internal lateinit var degrees: TextView
 
     @SuppressLint("ObsoleteSdkInt")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -68,19 +81,33 @@ class Location : Fragment(), LocationListener {
         myLocation.enableFollowLocation()
         map.overlays.add(myLocation)
         //map.animate() to myLocation.myLocation
+
+
+        imageCompass = view.findViewById(R.id.img_compass) as ImageView
+        degrees = view.findViewById(R.id.txt_angle) as TextView
+        mCompassSensorManager = context!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
+
+
         return view
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onLocationChanged(p0: Location?) {
         Log.d("GEOLOCATION", "new latitude: ${p0?.latitude} and longitude: ${p0?.longitude}")
-        txt_map_info.text = "Latitude: ${p0?.latitude}, Longitude: ${p0?.longitude}, Speed: ${p0?.speedAccuracyMetersPerSecond}, Altitude: ${p0?.altitude}"
+        // txt_map_info.text = "Latitude: ${p0?.latitude}, Longitude: ${p0?.longitude}, Speed: ${p0?.speedAccuracyMetersPerSecond}, Altitude: ${p0?.altitude}"
 
         val latitude = p0!!.latitude
         val longitude = p0.longitude
         val speed = p0.speed
+        val speedMS = p0.speedAccuracyMetersPerSecond
+
+        val lat = "%.2f".format(latitude)
+        val lon = "%.2f".format(longitude)
+        val sms = "%.2f".format(speedMS)
 
         val geoPoint = GeoPoint(latitude, longitude)
+
+        txt_map_info.text = "Latitude: ${lat}, Longitude: ${lon}, Speed: ${sms} m/s"
 
         map.animate().to(geoPoint)
         map.mapCenter
@@ -115,4 +142,38 @@ class Location : Fragment(), LocationListener {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        mCompassSensorManager!!.registerListener(this, mCompassSensorManager!!.getDefaultSensor(Sensor.TYPE_ORIENTATION),
+                SensorManager.SENSOR_DELAY_GAME)
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        mCompassSensorManager!!.unregisterListener(this)
+    }
+
+    override fun onSensorChanged(event: SensorEvent) {
+        // get the angle around the z-axis rotated
+        val degree = Math.round(event.values[0]).toFloat()
+
+        degrees.text = "Heading: " + java.lang.Float.toString(degree) + " degrees"
+
+        val rotationAnimation = RotateAnimation(
+                currentDegree,
+                -degree,
+                Animation.RELATIVE_TO_SELF, 0.5f,
+                Animation.RELATIVE_TO_SELF,
+                0.5f)
+        rotationAnimation.duration = 210
+        rotationAnimation.fillAfter = true
+        imageCompass!!.startAnimation(rotationAnimation)
+        currentDegree = -degree
+
+    }
+
+    override fun onAccuracyChanged(sensor: Sensor, accuracy: Int) {}
 }
