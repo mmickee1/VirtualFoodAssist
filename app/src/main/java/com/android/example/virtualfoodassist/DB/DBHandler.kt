@@ -31,10 +31,6 @@ class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         var cv = ContentValues()
         cv.put(COL_NAME, food.name)
         var result = db.insert(TABLE_NAME, null, cv)
-        if (result == -1.toLong())
-            Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show()
-        else
-            Toast.makeText(context, "Success!", Toast.LENGTH_SHORT).show()
     }
 
     fun readData(): MutableList<Food> {
