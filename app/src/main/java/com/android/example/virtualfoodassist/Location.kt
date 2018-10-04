@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.drawable.Drawable
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -19,7 +20,6 @@ import android.support.annotation.RequiresApi
 import android.support.v4.app.ActivityCompat
 import android.support.v4.app.Fragment
 import android.support.v4.content.ContextCompat
-import android.support.v4.content.ContextCompat.getSystemService
 import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.LayoutInflater
@@ -30,14 +30,18 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import com.google.android.gms.location.FusedLocationProviderClient
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.location.*
+import org.osmdroid.bonuspack.routing.OSRMRoadManager
+import org.osmdroid.bonuspack.routing.Road
+import org.osmdroid.bonuspack.routing.RoadManager
+import org.osmdroid.bonuspack.routing.RoadNode
+import org.osmdroid.bonuspack.clustering.GridMarkerClusterer
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
+import org.osmdroid.views.overlay.Marker
+import org.osmdroid.views.overlay.Polyline
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 class Location : Fragment(), LocationListener, SensorEventListener {
@@ -62,6 +66,7 @@ class Location : Fragment(), LocationListener, SensorEventListener {
         map.setBuiltInZoomControls(true)
         map.setMultiTouchControls(true)
         map.controller.setZoom(12.0)
+        val startPoint = GeoPoint(60.17, 24.95)
         map.controller.setCenter(GeoPoint(60.17, 24.95))
 
 
@@ -87,6 +92,37 @@ class Location : Fragment(), LocationListener, SensorEventListener {
         degrees = view.findViewById(R.id.txt_angle) as TextView
         mCompassSensorManager = context!!.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
+
+        //NAVIGATION
+      /*  val startMarker = Marker(map)
+        startMarker.position = startPoint
+        startMarker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+        map.overlays.add(startMarker)
+
+        val roadManager: RoadManager = OSRMRoadManager(this.context)
+        val waypoints = ArrayList<GeoPoint>()
+        waypoints.add(startPoint)
+        val endPoint = GeoPoint(48.4, -1.9)
+        waypoints.add(endPoint)
+        val road: Road = roadManager.getRoad(waypoints)
+        val roadOverlay: Polyline = RoadManager.buildRoadOverlay(road)
+        map.getOverlays().add(roadOverlay)
+        map.invalidate()
+
+        val nodeIcon: Drawable = getResources().getDrawable(R.drawable.marker_node);
+        for (i in 0..road.mNodes.size - 1) {
+            val node: RoadNode = road.mNodes.get(i)
+            val nodeMarker: Marker = Marker (map)
+            nodeMarker.setPosition(node.mLocation)
+            nodeMarker.setIcon(nodeIcon)
+            nodeMarker.setTitle("Step " + i)
+            map.getOverlays().add(nodeMarker)
+            nodeMarker.setSnippet(node.mInstructions)
+            nodeMarker.setSubDescription(Road.getLengthDurationText(this.context, node.mLength, node.mDuration))
+            val icon = resources.getDrawable(R.drawable.ic_continue)
+            nodeMarker.image = icon
+
+        }*/
 
         return view
     }
