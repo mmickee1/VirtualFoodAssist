@@ -1,13 +1,8 @@
 package com.android.example.virtualfoodassist
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
-import android.support.v4.app.NavUtils
-import android.util.Log
-import android.widget.TextView
-import java.io.File
 import android.support.v7.app.AppCompatActivity
 import android.view.*
 
@@ -20,39 +15,15 @@ class Info() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.info, container, false)
+        setUpActionBar()
+        return view
+    }
+
+    private fun setUpActionBar() {
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).getSupportActionBar()?.setDisplayShowHomeEnabled(true)
         (activity as AppCompatActivity).setTitle(R.string.general_app_information)
         setHasOptionsMenu(true)
-        return view
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-    }
-
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {

@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
@@ -21,7 +20,6 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.ar_fragment.*
-import java.io.File
 
 @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA", "CanBeVal")
 public class AugmentedReality : AppCompatActivity() {
@@ -39,10 +37,13 @@ public class AugmentedReality : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.d("test", "reached AR class")
         setContentView(R.layout.ar_fragment)
+        createArView()
+    }
 
-        Toast.makeText(this@AugmentedReality, "Welcome! Scan an item for a recipe!", Toast.LENGTH_LONG).show()
+    private fun createArView() {
+
+        Toast.makeText(this@AugmentedReality, R.string.scan_for_recipe, Toast.LENGTH_LONG).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.arimage_fragment) as ArFragment
         fitToScanImageView = findViewById<ImageView>(R.id.fit_to_scan_img)
@@ -57,14 +58,14 @@ public class AugmentedReality : AppCompatActivity() {
         val pizza = ModelRenderable.builder()
                 .setSource(this, Uri.parse("pizzaObject.sfb"))
                 .build()
-        pizza.thenAccept{ it -> this.pizzaRenderable = it }
+        pizza.thenAccept { it -> this.pizzaRenderable = it }
 
         fragment.arSceneView.scene.addOnUpdateListener { frameTime -> onUpdate(frameTime) }
         AugmentedImageFragment()
 
         ButtonClick.visibility = View.GONE
 
-        backButton.setOnClickListener{
+        backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
@@ -111,17 +112,14 @@ public class AugmentedReality : AppCompatActivity() {
                                         }
                                     }
                             )
-                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pasta recipe*", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@AugmentedReality, R.string.click_object_for_pasta_recipe, Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
 
                             val food = Food("Pasta")
                             db.insertData(food)
-                        }
-
-
-                        else if (it.name == "pizza1" || it.name == "pizza2" || it.name == "pizza3" || it.name == "pizza4" ||
+                        } else if (it.name == "pizza1" || it.name == "pizza2" || it.name == "pizza3" || it.name == "pizza4" ||
                                 it.name == "pizza5" || it.name == "pizza6" || it.name == "pizza7" || it.name == "pizza8" ||
-                                it.name == "pizza9" || it.name == "pizza10"){
+                                it.name == "pizza9" || it.name == "pizza10") {
                             imgNode.renderable = pizzaRenderable
                             imgNode.setOnTapListener(
                                     object : Node.OnTapListener {
@@ -133,15 +131,11 @@ public class AugmentedReality : AppCompatActivity() {
                                         }
                                     }
                             )
-                            Toast.makeText(this@AugmentedReality, "*Click 3D object for a pizza recipe*", Toast.LENGTH_LONG).show()
+                            Toast.makeText(this@AugmentedReality, R.string.click_object_for_pizza_recipe, Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
                             val food = Food("Pizza")
                             db.insertData(food)
                         }
-
-
-
-
 
                     }
                 }

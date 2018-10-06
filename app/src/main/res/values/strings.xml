@@ -5,13 +5,19 @@
     <string name="info">Info</string>
     <string name="general_app_information">General App Information</string>
     <string name="history">History</string>
-    <string name="made_by">This project was made by Mikael M and Kendy N for Metropolia UAS Android Sensor Based application course</string>
+    <string name="made_by">This project was made by Mikael Meinander and Kendy Nguyen for Metropolia UAS Android Sensor Based applications course</string>
     <string name="about_camera">Use camera to scan food (like pizza or pasta, yam!) and get online recipes opened for you! After scanning alternative choice is to open map to navigate closest market near you!</string>
     <string name="about_map">Check your current location and navigate to nearest market!</string>
     <string name="about_history">Lists all the scanned item for you to ease remembering what you wanted to eat next or what you ate last time you used this app!</string>
     <string name="location">Location</string>
     <string name="placeholder_text">Here comes the text!</string>
     <string name="clear_history">Clear history</string>
+    <string name="clear_history_scanned">Clear history of scanned files?</string>
     <string name="no_scanned_items">No scanned items</string>
     <string name="no_scanned_items_yet">No scanned items yet!</string>
+    <string name="yes">YES</string>
+    <string name="no">NO</string>
+    <string name="scan_for_recipe">Welcome! Scan an item for a recipe!</string>
+    <string name="click_object_for_pasta_recipe">*Click 3D object for a pasta recipe*</string>
+    <string name="click_object_for_pizza_recipe">*Click 3D object for a pizza recipe*</string>
 </resources>

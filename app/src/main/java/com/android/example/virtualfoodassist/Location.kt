@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.drawable.Drawable
 import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
@@ -31,17 +30,10 @@ import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
 import kotlinx.android.synthetic.main.location.*
-import org.osmdroid.bonuspack.routing.OSRMRoadManager
-import org.osmdroid.bonuspack.routing.Road
-import org.osmdroid.bonuspack.routing.RoadManager
-import org.osmdroid.bonuspack.routing.RoadNode
-import org.osmdroid.bonuspack.clustering.GridMarkerClusterer
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
-import org.osmdroid.views.overlay.Marker
-import org.osmdroid.views.overlay.Polyline
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
 class Location : Fragment(), LocationListener, SensorEventListener {
@@ -55,11 +47,8 @@ class Location : Fragment(), LocationListener, SensorEventListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
         val view = inflater.inflate(R.layout.location, container, false)
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).setTitle(R.string.location)
-        setHasOptionsMenu(true)
 
+        setUpActionBar()
 
         val map = view.findViewById<MapView>(R.id.map)
         map.setTileSource(TileSourceFactory.MAPNIK)
@@ -125,6 +114,14 @@ class Location : Fragment(), LocationListener, SensorEventListener {
         }*/
 
         return view
+    }
+
+    private fun setUpActionBar() {
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).setTitle(R.string.location)
+        setHasOptionsMenu(true)
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)

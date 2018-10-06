@@ -1,11 +1,11 @@
 package com.android.example.virtualfoodassist
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -22,13 +22,11 @@ class History() : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.history, container, false)
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).setTitle(R.string.history)
-        setHasOptionsMenu(true)
+
+        setupActionBar()
 
         val txtShowNote = view.findViewById<TextView>(R.id.txtShowNotes)
-        var data = DBHandler(this!!.context!!).readData()
+        var data = DBHandler(this.context!!).readData()
         txtShowNote.text = ""
         for (i in 0..data.size - 1) {
             txtShowNote.append(data.get(i).name + "\n")
@@ -37,56 +35,35 @@ class History() : Fragment() {
 
         val btn_clear = view.findViewById<Button>(R.id.btn_clear_history)
         btn_clear.setOnClickListener() {
-            val contxt = this.context
-            val builder = AlertDialog.Builder(contxt!!)
-            builder.setTitle("Clear history")
-            builder.setMessage("Clear history of scanned files?")
-            builder.setPositiveButton("YES") { dialog, which ->
-                DBHandler(this.context!!).deleteData()
-                DBHandler(this.context!!).readData()
-                txtShowNote.text = ""
-                for (i in 0..data.size - 1) {
-                    txtShowNote.append(data.get(i).name + "\n")
-                }
-                txtShowNote.textSize = 30f
-
-            }
-            builder.setNegativeButton("No") { dialog, which ->
-                dialog.cancel()
-            }
-            val dialog: AlertDialog = builder.create()
-            dialog.show()
+            doubleCheckBuilder()
         }
         return view
     }
 
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    private fun doubleCheckBuilder() {
+        val txtShowNote = view!!.findViewById<TextView>(R.id.txtShowNotes)
+        var data = DBHandler(this.context!!).readData()
+        val contxt = this.context
+        val builder = AlertDialog.Builder(contxt!!)
+        builder.setTitle(R.string.clear_history)
+        builder.setMessage(R.string.clear_history_scanned)
+        builder.setPositiveButton(R.string.yes) { dialog, which ->
+            Log.d("yay", "before deleting..:" + txtShowNote.text)
+            DBHandler(this.context!!).deleteData()
+            txtShowNote.text = ""
+        }
+        builder.setNegativeButton(R.string.no) { dialog, which ->
+            dialog.cancel()
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
     }
 
-    override fun onPause() {
-        super.onPause()
-    }
-
-    override fun onStart() {
-        super.onStart()
-    }
-
-    override fun onResume() {
-        super.onResume()
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-    }
-
-    override fun onStop() {
-        super.onStop()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
+    private fun setupActionBar() {
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar!!.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).setTitle(R.string.history)
+        setHasOptionsMenu(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

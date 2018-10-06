@@ -1,99 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:id="@+id/info_xml"
-    android:background="@color/greenA200"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-<!--
-    <TextView
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/info_xml"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/blue900"
-        android:padding="26dp"
-        android:paddingStart="8dp"
-        android:text="@string/general_app_information"
-        android:textColor="@android:color/white"
-        android:textSize="26sp"
-        tools:ignore="RtlSymmetry" /> -->
+        android:background="@color/greenA200"
+        android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/yellow600"
-        android:padding="8dp"
-        android:text="@string/camera"
-        android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/yellow400"
-        android:padding="8dp"
-        android:text="@string/about_camera" />
+        <!--
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue900"
+                android:padding="26dp"
+                android:paddingStart="8dp"
+                android:text="@string/general_app_information"
+                android:textColor="@android:color/white"
+                android:textSize="26sp"
+                tools:ignore="RtlSymmetry" /> -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow600"
+            android:padding="8dp"
+            android:text="@string/camera"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/red500"
-        android:padding="8dp"
-        android:text="@string/map"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/yellow400"
+            android:padding="8dp"
+            android:text="@string/about_camera"
+            android:textSize="26sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/redA200"
-        android:padding="8dp"
-        android:text="@string/about_map" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/black" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/red500"
+            android:padding="8dp"
+            android:text="@string/map"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightblueA700"
-        android:padding="8dp"
-        android:text="@string/history"
-        android:textStyle="bold" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/redA200"
+            android:padding="8dp"
+            android:text="@string/about_map"
+            android:textSize="26sp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/lightblue200"
-        android:padding="8dp"
-        android:text="@string/about_history" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/black" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:background="@android:color/black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightblueA700"
+            android:padding="8dp"
+            android:text="@string/history"
+            android:textSize="26sp"
+            android:textStyle="bold" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/lightblue200"
+            android:padding="8dp"
+            android:text="@string/about_history"
+            android:textSize="26sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@android:color/black" />
 
         <TextView
             android:id="@+id/credit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:background="@color/greenA200"
-            android:padding="16dp"
-            android:paddingStart="8dp"
+            android:padding="8dp"
             android:text="@string/made_by"
-            tools:ignore="RtlSymmetry" />
+            android:textSize="26sp" />
 
-    </RelativeLayout>
-
-</LinearLayout>
+    </LinearLayout>
+</ScrollView>

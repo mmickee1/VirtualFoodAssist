@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">VirtualFoodAssist</string>
+    <string name="camera">Kamera</string>
+    <string name="map">Kartta</string>
+    <string name="info">Info</string>
+    <string name="general_app_information">Yleinen applikaatio informaatio</string>
+    <string name="history">Historia</string>
+    <string name="made_by">Tämän projektin tekivät Mikael Meinander ja Kendy Nguyen Metropolia AMK:n Android Sensoripohjaiselle kurssille</string>
+    <string name="about_camera">Käytä kameraa skannataksesi ruokaa (kuten pizzaa tai pastaa, nam!) ja saa nettireseptejä niille! Skannauksen jälkeen toinen vaihtoehto on avata kartta nähdäksesi lähin kauppa!</string>
+    <string name="about_map">Tarkista nykyinen sijaintisi ja navigoi lähimpään kauppaan!</string>
+    <string name="about_history">Listaa kaikki skannatut ruoat, jotta muistat mitä haluat syödä seuraavaksi tai nähdäksesi mitä söit viimeksi kun käytit tätä sovellusta!</string>
+    <string name="location">Sijainti</string>
+    <string name="placeholder_text">Tekstin placeholderi!</string>
+    <string name="clear_history">Poista Historia</string>
+    <string name="clear_history_scanned">Poista skannattujen ruokien historia?</string>
+    <string name="no_scanned_items">Ei skannattuja ruokia!</string>
+    <string name="no_scanned_items_yet">Et ole vielä skannannut ruokia!</string>
+    <string name="yes">KYLLÄ</string>
+    <string name="no">EI</string>
+    <string name="scan_for_recipe">Hei! Skannaa ruoka saadaksesi resepti!</string>
+    <string name="click_object_for_pasta_recipe">*Napauta 3D objektia saadaksesi Pasta reseptin!*</string>
+    <string name="click_object_for_pizza_recipe">*Napauta 3D objektia saadaksesi Pizza reseptin!*</string>
+</resources>
