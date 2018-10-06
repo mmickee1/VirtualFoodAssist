@@ -3,6 +3,8 @@
     <string name="camera">Camera</string>
     <string name="map">Map</string>
     <string name="info">Info</string>
+    <string name="home">Home button</string>
+    <string name="maptostore">Map to store</string>
     <string name="general_app_information">General App Information</string>
     <string name="history">History</string>
     <string name="made_by">This project was made by Mikael Meinander and Kendy Nguyen for Metropolia UAS Android Sensor Based applications course</string>

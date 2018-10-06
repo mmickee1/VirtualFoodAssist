@@ -63,6 +63,8 @@ class AugmentedImageFragment: ArFragment(){
         val augmentedImageBitmapPasta12 = BitmapFactory.decodeStream(pasta12)
         val pasta13 = assetManager.open("pasta/pasta13.jpg")
         val augmentedImageBitmapPasta13 = BitmapFactory.decodeStream(pasta13)
+        val pasta14 = assetManager.open("pasta/pasta14.jpg")
+        val augmentedImageBitmapPasta14 = BitmapFactory.decodeStream(pasta14)
 
 
         // Pizza
@@ -103,6 +105,7 @@ class AugmentedImageFragment: ArFragment(){
         augmentedImageDb.addImage("pasta11", augmentedImageBitmapPasta11)
         augmentedImageDb.addImage("pasta12", augmentedImageBitmapPasta12)
         augmentedImageDb.addImage("pasta13", augmentedImageBitmapPasta13)
+        augmentedImageDb.addImage("pasta14", augmentedImageBitmapPasta14)
 
         augmentedImageDb.addImage("pizza1", augmentedImageBitmapPizza1)
         augmentedImageDb.addImage("pizza2", augmentedImageBitmapPizza2)

@@ -4,8 +4,10 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
 import com.android.example.virtualfoodassist.DB.DBHandler
@@ -64,6 +66,10 @@ public class AugmentedReality : AppCompatActivity() {
         AugmentedImageFragment()
 
         ButtonClick.visibility = View.GONE
+        ButtonClick.setOnClickListener{
+            supportFragmentManager.beginTransaction().replace(R.id.arimage_fragment, Location()).addToBackStack(null).commit()
+            ButtonClick.visibility = View.GONE
+        }
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
@@ -100,7 +106,8 @@ public class AugmentedReality : AppCompatActivity() {
 
                         if (it.name == "pasta1" || it.name == "pasta2" || it.name == "pasta3" || it.name == "pasta4" ||
                                 it.name == "pasta5" || it.name == "pasta6" || it.name == "pasta7" || it.name == "pasta8" ||
-                                it.name == "pasta9" || it.name == "pasta10" || it.name == "pasta11" || it.name == "pasta12") {
+                                it.name == "pasta9" || it.name == "pasta10" || it.name == "pasta11" || it.name == "pasta12" ||
+                                it.name == "pasta13" || it.name == "pasta14") {
                             imgNode.renderable = pastaRenderable
                             imgNode.setOnTapListener(
                                     object : Node.OnTapListener {
@@ -114,9 +121,9 @@ public class AugmentedReality : AppCompatActivity() {
                             )
                             Toast.makeText(this@AugmentedReality, R.string.click_object_for_pasta_recipe, Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
-
                             val food = Food("Pasta")
                             db.insertData(food)
+
                         } else if (it.name == "pizza1" || it.name == "pizza2" || it.name == "pizza3" || it.name == "pizza4" ||
                                 it.name == "pizza5" || it.name == "pizza6" || it.name == "pizza7" || it.name == "pizza8" ||
                                 it.name == "pizza9" || it.name == "pizza10") {
@@ -141,5 +148,8 @@ public class AugmentedReality : AppCompatActivity() {
                 }
             }
         }
+    }
+    override fun onBackPressed() {
+        supportFragmentManager.popBackStackImmediate()
     }
 }

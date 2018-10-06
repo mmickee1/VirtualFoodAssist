@@ -24,18 +24,19 @@
 
     <Button
         android:id="@+id/ButtonClick"
+        android:text="@string/maptostore"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:text="Map to nearest store" />
+        android:background="@color/md_lime_500" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/backButton"
-        app:backgroundTint="@color/colorPrimaryDark"
+        app:backgroundTint="@color/md_light_green_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
         android:layout_margin="45px"
-        app:srcCompat="@drawable/ic_home" />
+        app:srcCompat="@drawable/ic_home"
+        android:text="@string/home"/>
 
 </FrameLayout>

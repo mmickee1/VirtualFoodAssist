@@ -3,6 +3,8 @@
     <string name="camera">Kamera</string>
     <string name="map">Kartta</string>
     <string name="info">Info</string>
+    <string name="home">Kotinäppäin</string>
+    <string name="maptostore">Etsi lähin kauppa</string>
     <string name="general_app_information">Yleinen applikaatio informaatio</string>
     <string name="history">Historia</string>
     <string name="made_by">Tämän projektin tekivät Mikael Meinander ja Kendy Nguyen Metropolia AMK:n Android Sensoripohjaiselle kurssille</string>

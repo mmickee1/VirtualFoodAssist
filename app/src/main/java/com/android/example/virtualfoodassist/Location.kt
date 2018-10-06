@@ -36,6 +36,7 @@ import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.mylocation.MyLocationNewOverlay
 
+@Suppress("DEPRECATION")
 class Location : Fragment(), LocationListener, SensorEventListener {
 
     private var imageCompass: ImageView? = null
