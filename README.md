@@ -5,13 +5,14 @@ The main idea of VirtualFoodAssist project is for users to use phone camera app 
 
 ---
 
-*Week 1 schedule*  
-
-For very first week we applied:  
-* project skeleton (Main menu view)
-* augmented reality
-* info page
-
+*Week 1 schedule*                                       |   *Week 2 schedule*
+                                                        |   
+For very first week we applied:                         |   For second week we applied:
+* project skeleton (Main menu view)                     |   * location/map
+* augmented reality                                     |   * database (history)
+* info page                                             |   * sensors (compass)
+                                                        |   * talkback and multilanguage features                                     
+                                                        
 ---  
 
 **Getting started**  
@@ -79,17 +80,7 @@ This way the MainActivity class looks more clear and readable for human eyes and
 
 ---  
 
-*Week 2 schedule*  
-
-For second week we applied:  
-* Location/map
-* Databse (History)
-* Sensors (Compass)
-* Added talkback and multilanguage features
-
----  
-
-For week two we improved the layout and accessibilites. Depending on device language, the app will automatically switch to that language. At the moment we have english and finnish version. Improvements had also be done to info page, since we got feedbacks that the text fonts are too small to read. 
+For week two we improved the layout and accessibilites. Depending on device language, the app will automatically switch to that language. At the moment we have english and finnish version. Improvements were also made on the info page, since we got feedbacks that the text fonts are too small to read. 
 
 ---  
 
@@ -101,6 +92,12 @@ For week two we improved the layout and accessibilites. Depending on device lang
 
 ---  
 
-Project members:  
+**Credits**
+* [poly.google.com](https://poly.google.com/)
+* [developer.android.com](https://developer.android.com/)
+
+---  
+
+**Authors**
 * Kendy Nguyen
 * Mikael Meinander
