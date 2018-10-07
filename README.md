@@ -5,14 +5,13 @@ The main idea of VirtualFoodAssist project is for users to use phone camera app 
 
 ---
 
-*Week 1 schedule*                                       |   *Week 2 schedule*
-                                                        |   
-For very first week we applied:                         |   For second week we applied:
-* project skeleton (Main menu view)                     |   * location/map
-* augmented reality                                     |   * database (history)
-* info page                                             |   * sensors (compass)
-                                                        |   * talkback and multilanguage features                                     
-                                                        
+*Week 1 schedule*  
+
+For very first week we applied:  
+* project skeleton (Main menu view)
+* augmented reality
+* info page
+
 ---  
 
 **Getting started**  
@@ -77,6 +76,16 @@ This way the MainActivity class looks more clear and readable for human eyes and
 *Week 1 result*
 
 ![week1](https://user-images.githubusercontent.com/23027158/46583620-7c8cad00-ca62-11e8-8cc5-194e547547b1.jpg)
+
+---  
+
+*Week 2 schedule*  
+
+For second week we applied:  
+* Location/map
+* Databse (History)
+* Sensors (Compass)
+* Added talkback and multilanguage features
 
 ---  
 
