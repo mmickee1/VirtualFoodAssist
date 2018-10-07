@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         txt_camera.setOnClickListener {
             Log.d("clicked", "Camera")
             setContentView(R.layout.splash)
+            // Opens a splash screen for 2,5 seconds before opening a camera view
             val background = object : Thread() {
                 override fun run() {
                     try {

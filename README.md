@@ -16,7 +16,9 @@ For very first week we applied:
 
 **Getting started**  
 
-For this project we used [Android Studio](https://developer.android.com/studio/ "Android Studio") and Kotlin language.
+For this project we used [Android Studio](https://developer.android.com/studio/ "Android Studio") and [Kotlin](https://kotlinlang.org/ "Kotlin") language.  
+  
+Requirements for this app is an Android device which has API level 24 or higher which is Android version (Nougat) 7.0 - 7.1.2 or newer.
 
 In MainActivity has methods that call other classes  
 
@@ -27,26 +29,42 @@ override fun onCreate(savedInstanceState: Bundle?) {
 
         txt_camera.setOnClickListener {
             Log.d("clicked", "Camera")
-            val intent = Intent(this, AugmentedReality::class.java)
-            startActivity(intent)
+            setContentView(R.layout.splash)
+            // Opens a splash screen for 2,5 seconds before opening a camera view
+            val background = object : Thread() {
+                override fun run() {
+                    try {
+                        Thread.sleep(2500)
+
+                        val intent = Intent(baseContext, AugmentedReality::class.java)
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
+                }
+            }
+            background.start()
         }
 
         txt_info.setOnClickListener {
             Log.d("clicked", "info")
             supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Info()).addToBackStack(null).commit()
+            //  .add(detailFragment, "detail")... better back navigation?
         }
 
         txt_map.setOnClickListener {
             Log.d("clicked", "Map")
             supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Location()).addToBackStack(null).commit()
-            //val intent = Intent(this, Location::class.java)
-            //startActivity(intent)
         }
 
         txt_history.setOnClickListener {
             Log.d("clicked", "History")
+            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, History()).addToBackStack(null).commit()
         }
+    }
 
+    override fun onBackPressed() {
+        supportFragmentManager.popBackStackImmediate()
     }
     
 ```  
@@ -57,13 +75,31 @@ This way the MainActivity class looks more clear and readable for human eyes and
 
 *Week 1 result*
 
-![387352a2-2cbd-46bf-ba98-176280926957](https://user-images.githubusercontent.com/23027158/46259482-bd287b80-c4e2-11e8-9398-4865a0164631.jpg)
+![week1](https://user-images.githubusercontent.com/23027158/46583620-7c8cad00-ca62-11e8-8cc5-194e547547b1.jpg)
 
-![1a11a352-622a-4aaa-863d-c9b24e6cc28a](https://user-images.githubusercontent.com/23027158/46259510-0678cb00-c4e3-11e8-9150-0f78c76afbe5.jpg)
+---  
 
-![8946272e-0a4a-4742-832c-679b4881a2ca](https://user-images.githubusercontent.com/23027158/46259516-1bedf500-c4e3-11e8-9c0c-0845d1c846aa.jpg)
+*Week 2 schedule*  
 
----
+For second week we applied:  
+* Location/map
+* Databse (History)
+* Sensors (Compass)
+* Added talkback and multilanguage features
+
+---  
+
+For week two we improved the layout and accessibilites. Depending on device language, the app will automatically switch to that language. At the moment we have english and finnish version. Improvements had also be done to info page, since we got feedbacks that the text fonts are too small to read. 
+
+---  
+
+*Week 2 result*  
+
+![week2](https://user-images.githubusercontent.com/23027158/46583678-37b54600-ca63-11e8-853d-4d7c91ef1738.jpg)
+
+![week2b](https://user-images.githubusercontent.com/23027158/46583706-a1cdeb00-ca63-11e8-8506-4b2b5d925f09.jpg)
+
+---  
 
 Project members:  
 * Kendy Nguyen
