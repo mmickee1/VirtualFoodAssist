@@ -24,6 +24,7 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_margin="32dp"
+            android:contentDescription="@string/clear_history"
             android:text="@string/clear_history"/>
     </RelativeLayout>
 

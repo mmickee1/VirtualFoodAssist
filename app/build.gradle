@@ -36,10 +36,11 @@ dependencies {
     implementation 'com.google.ar.sceneform:core:1.4.0'
     implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-maps:16.0.0'
-    implementation 'org.osmdroid:osmdroid-android:6.0.2'
-    compile 'com.github.MKergall:osmbonuspack:6.5.2'
-   // compile(name:'osmbonuspack_6.5.2', ext:'aar')
-    compile "com.android.support:support-v4:28.0.0"
+    implementation 'com.google.android.gms:play-services-places:16.0.0'
+    //implementation 'org.osmdroid:osmdroid-android:6.0.2'
+    // compile 'com.github.MKergall:osmbonuspack:6.5.2'
+    // compile(name:'osmbonuspack_6.5.2', ext:'aar')
+    implementation "com.android.support:support-v4:28.0.0"
     compile 'org.apache.commons:commons-lang3:3.4'
     compile 'com.google.code.gson:gson:2.8.2'
     compile 'com.squareup.okhttp3:okhttp:3.10.0'

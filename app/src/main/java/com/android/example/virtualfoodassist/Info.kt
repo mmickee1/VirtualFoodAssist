@@ -7,7 +7,7 @@ import android.support.v7.app.AppCompatActivity
 import android.view.*
 
 
-class Info() : Fragment() {
+class Info : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,19 +34,13 @@ class Info() : Fragment() {
         when (item!!.getItemId()) {
             android.R.id.home
             -> {
-                //NavUtils.navigateUpFromSameTask(Info());
-                //NavUtils.navigateUpTo()
-                /*  val upIntent = Intent(activity, MainActivity::class.java)
-                  if (NavUtils.shouldUpRecreateTask(activity!!, upIntent)) {
-                      activity!!.finish()
-                  } else {
-                      NavUtils.navigateUpTo(activity!!, upIntent)
-                  } */
                 val i = Intent(activity, MainActivity::class.java)
                 startActivity(i)
+                (activity as AppCompatActivity).setTitle(R.string.app_name)
                 return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
+
 }

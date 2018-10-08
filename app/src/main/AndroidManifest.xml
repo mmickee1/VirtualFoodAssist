@@ -17,7 +17,7 @@
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.location.network" />
 
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 
 
     <application
@@ -35,12 +35,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AugmentedReality"
-            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".AugmentedReality"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".LocationGoogle" />
 
         <meta-data
             android:name="com.google.ar.core"
             android:value="required" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBtBavzEL_Iv1r6UucLBlB0uURtCyO6zVo" />
+        <meta-data
+            android:name="com.google.android.gms.location"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

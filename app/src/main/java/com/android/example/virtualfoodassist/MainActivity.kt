@@ -1,18 +1,17 @@
 package com.android.example.virtualfoodassist
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import kotlinx.android.synthetic.main.activity_main.*
-
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setTitle(R.string.app_name)
 
         txt_camera.setOnClickListener {
             Log.d("clicked", "Camera")
@@ -41,7 +40,9 @@ class MainActivity : AppCompatActivity() {
 
         txt_map.setOnClickListener {
             Log.d("clicked", "Map")
-            supportFragmentManager.beginTransaction().replace(R.id.main_container_child, Location()).addToBackStack(null).commit()
+            //supportFragmentManager.beginTransaction().replace(R.id.main_container_child, LocationGoogle()).addToBackStack(null).commit()
+            val intent = Intent(baseContext, LocationGoogle::class.java)
+            startActivity(intent)
         }
 
         txt_history.setOnClickListener {
@@ -52,5 +53,10 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         supportFragmentManager.popBackStackImmediate()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        setTitle(R.string.app_name)
     }
 }

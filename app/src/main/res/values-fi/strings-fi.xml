@@ -22,4 +22,18 @@
     <string name="scan_for_recipe">Hei! Skannaa ruoka saadaksesi resepti!</string>
     <string name="click_object_for_pasta_recipe">*Napauta 3D objektia saadaksesi Pasta reseptin!*</string>
     <string name="click_object_for_pizza_recipe">*Napauta 3D objektia saadaksesi Pizza reseptin!*</string>
+    <string name="findstore">Etsi lähin kauppa</string>
+    <string name="return_home">Palaa kotinäyttöön</string>
+    <string name="compass">Kompassi</string>
+    <string name="loading">Ladataan</string>
+    <string name="heading">Suunta: </string>
+    <string name="degrees">Astetta</string>
+    <string name="lat">Leveys:</string>
+    <string name="latitude">Leveys:</string>
+    <string name="longitude">Pituus:</string>
+    <string name="lon">Pituus:</string>
+    <string name="speed">Nopeus:</string>
+    <string name="last_loc">Viimeisin sijainti: </string>
+
+
 </resources>

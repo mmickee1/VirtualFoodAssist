@@ -22,7 +22,7 @@ import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.ar_fragment.*
 
 @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA", "CanBeVal")
-public class AugmentedReality : AppCompatActivity() {
+class AugmentedReality : AppCompatActivity() {
 
     lateinit var fragment: ArFragment
     lateinit var fitToScanImageView: ImageView
@@ -64,8 +64,11 @@ public class AugmentedReality : AppCompatActivity() {
         AugmentedImageFragment()
 
         ButtonClick.visibility = View.GONE
-        ButtonClick.setOnClickListener{
-            supportFragmentManager.beginTransaction().replace(R.id.arimage_fragment, Location()).addToBackStack(null).commit()
+        ButtonClick.setOnClickListener {
+            //changed location from fragment to activity so commenting the fragment out...
+            //supportFragmentManager.beginTransaction().replace(R.id.arimage_fragment, Location()).addToBackStack(null).commit()
+            val intent = Intent(baseContext, LocationGoogle::class.java)
+            startActivity(intent)
             ButtonClick.visibility = View.GONE
         }
 
@@ -147,6 +150,7 @@ public class AugmentedReality : AppCompatActivity() {
             }
         }
     }
+
     override fun onBackPressed() {
         supportFragmentManager.popBackStackImmediate()
     }

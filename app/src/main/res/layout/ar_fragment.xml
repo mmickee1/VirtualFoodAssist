@@ -20,12 +20,14 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:scaleType="fitCenter"
-        android:src="@drawable/scan" />
+        android:src="@drawable/scan"
+        tools:ignore="ContentDescription" />
 
     <Button
         android:id="@+id/ButtonClick"
         android:text="@string/maptostore"
         android:layout_width="match_parent"
+        android:contentDescription="@string/findstore"
         android:layout_height="wrap_content"
         android:background="@color/md_lime_500" />
 
@@ -35,7 +37,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_margin="45px"
+        android:contentDescription="@string/return_home"
+        android:layout_margin="45dp"
         app:srcCompat="@drawable/ic_home"
         android:text="@string/home"/>
 

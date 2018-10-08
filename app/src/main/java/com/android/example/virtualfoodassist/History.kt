@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
@@ -14,11 +13,7 @@ import android.widget.Button
 import android.widget.TextView
 import com.android.example.virtualfoodassist.DB.DBHandler
 
-class History() : Fragment() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
+class History : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.history, container, false)
@@ -34,7 +29,7 @@ class History() : Fragment() {
          txtShowNote.textSize = 30F
 
         val btn_clear = view.findViewById<Button>(R.id.btn_clear_history)
-        btn_clear.setOnClickListener() {
+        btn_clear.setOnClickListener {
             doubleCheckBuilder()
         }
         return view
@@ -48,7 +43,6 @@ class History() : Fragment() {
         builder.setTitle(R.string.clear_history)
         builder.setMessage(R.string.clear_history_scanned)
         builder.setPositiveButton(R.string.yes) { dialog, which ->
-            Log.d("yay", "before deleting..:" + txtShowNote.text)
             DBHandler(this.context!!).deleteData()
             txtShowNote.text = ""
         }
@@ -67,19 +61,12 @@ class History() : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.getItemId()) {
+        when (item!!.itemId) {
             android.R.id.home
             -> {
-                //NavUtils.navigateUpFromSameTask(Info());
-                //NavUtils.navigateUpTo()
-                /*  val upIntent = Intent(activity, MainActivity::class.java)
-                  if (NavUtils.shouldUpRecreateTask(activity!!, upIntent)) {
-                      activity!!.finish()
-                  } else {
-                      NavUtils.navigateUpTo(activity!!, upIntent)
-                  } */
                 val i = Intent(activity, MainActivity::class.java)
                 startActivity(i)
+                (activity as AppCompatActivity).setTitle(R.string.app_name)
                 return true
             }
         }
