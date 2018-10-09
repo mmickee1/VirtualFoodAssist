@@ -4,7 +4,6 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.view.MotionEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.Toast
@@ -14,8 +13,6 @@ import com.google.ar.core.AugmentedImage
 import com.google.ar.core.TrackingState
 import com.google.ar.sceneform.AnchorNode
 import com.google.ar.sceneform.FrameTime
-import com.google.ar.sceneform.HitTestResult
-import com.google.ar.sceneform.Node
 import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
@@ -24,13 +21,13 @@ import kotlinx.android.synthetic.main.ar_fragment.*
 @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA", "CanBeVal")
 class AugmentedReality : AppCompatActivity() {
 
-    lateinit var fragment: ArFragment
-    lateinit var fitToScanImageView: ImageView
-    lateinit var pastaRenderable: ModelRenderable
-    lateinit var pizzaRenderable: ModelRenderable
+    private lateinit var fragment: ArFragment
+    private lateinit var fitToScanImageView: ImageView
+    private lateinit var pastaRenderable: ModelRenderable
+    private lateinit var pizzaRenderable: ModelRenderable
 
-    val pastaUrl = "https://www.valio.fi/reseptit/ryhmat/pastat/"
-    val pizzaUrl = "https://www.valio.fi/reseptit/pizza/"
+    private val pastaUrl = "https://www.valio.fi/reseptit/ryhmat/pastat/"
+    private val pizzaUrl = "https://www.valio.fi/reseptit/pizza/"
 
     private val contexti = this
     var db = DBHandler(contexti)
@@ -46,7 +43,7 @@ class AugmentedReality : AppCompatActivity() {
         Toast.makeText(this@AugmentedReality, R.string.scan_for_recipe, Toast.LENGTH_LONG).show()
 
         fragment = supportFragmentManager.findFragmentById(R.id.arimage_fragment) as ArFragment
-        fitToScanImageView = findViewById<ImageView>(R.id.fit_to_scan_img)
+        fitToScanImageView = findViewById(R.id.fit_to_scan_img)
 
         // Pasta
         val pasta = ModelRenderable.builder()
@@ -110,16 +107,11 @@ class AugmentedReality : AppCompatActivity() {
                                 it.name == "pasta9" || it.name == "pasta10" || it.name == "pasta11" || it.name == "pasta12" ||
                                 it.name == "pasta13" || it.name == "pasta14") {
                             imgNode.renderable = pastaRenderable
-                            imgNode.setOnTapListener(
-                                    object : Node.OnTapListener {
-                                        override fun onTap(hitTestResult: HitTestResult?, motionEvent: MotionEvent?) {
-
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data = Uri.parse(pastaUrl)
-                                            startActivity(intent)
-                                        }
-                                    }
-                            )
+                            imgNode.setOnTapListener { _, _ ->
+                                val intent = Intent(Intent.ACTION_VIEW)
+                                intent.data = Uri.parse(pastaUrl)
+                                startActivity(intent)
+                            }
                             Toast.makeText(this@AugmentedReality, R.string.click_object_for_pasta_recipe, Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
                             val food = Food("Pasta")
@@ -129,16 +121,11 @@ class AugmentedReality : AppCompatActivity() {
                                 it.name == "pizza5" || it.name == "pizza6" || it.name == "pizza7" || it.name == "pizza8" ||
                                 it.name == "pizza9" || it.name == "pizza10") {
                             imgNode.renderable = pizzaRenderable
-                            imgNode.setOnTapListener(
-                                    object : Node.OnTapListener {
-                                        override fun onTap(hitTestResult: HitTestResult?, motionEvent: MotionEvent?) {
-
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data = Uri.parse(pizzaUrl)
-                                            startActivity(intent)
-                                        }
-                                    }
-                            )
+                            imgNode.setOnTapListener { _, _ ->
+                                val intent = Intent(Intent.ACTION_VIEW)
+                                intent.data = Uri.parse(pizzaUrl)
+                                startActivity(intent)
+                            }
                             Toast.makeText(this@AugmentedReality, R.string.click_object_for_pizza_recipe, Toast.LENGTH_LONG).show()
                             ButtonClick.visibility = View.VISIBLE
                             val food = Food("Pizza")

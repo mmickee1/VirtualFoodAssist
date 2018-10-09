@@ -34,6 +34,9 @@
     <string name="lon">Pituus:</string>
     <string name="speed">Nopeus:</string>
     <string name="last_loc">Viimeisin sijainti: </string>
+    <string name="last_searched_loc">Viimeisin etsitty sijainti: </string>
+    <string name="search">Etsi </string>
+
 
 
 </resources>

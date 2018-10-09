@@ -21,15 +21,15 @@ class History : Fragment() {
         setupActionBar()
 
         val txtShowNote = view.findViewById<TextView>(R.id.txtShowNotes)
-        var data = DBHandler(this.context!!).readData()
+        val data = DBHandler(this.context!!).readData()
         txtShowNote.text = ""
-        for (i in 0..data.size - 1) {
-            txtShowNote.append(data.get(i).name + "\n")
+        for (i in 0 until data.size) {
+            txtShowNote.append(data[i].name + "\n")
         }
          txtShowNote.textSize = 30F
 
-        val btn_clear = view.findViewById<Button>(R.id.btn_clear_history)
-        btn_clear.setOnClickListener {
+        val btnclear = view.findViewById<Button>(R.id.btn_clear_history)
+        btnclear.setOnClickListener {
             doubleCheckBuilder()
         }
         return view
@@ -37,16 +37,16 @@ class History : Fragment() {
 
     private fun doubleCheckBuilder() {
         val txtShowNote = view!!.findViewById<TextView>(R.id.txtShowNotes)
-        var data = DBHandler(this.context!!).readData()
+        //var data = DBHandler(this.context!!).readData()
         val contxt = this.context
         val builder = AlertDialog.Builder(contxt!!)
         builder.setTitle(R.string.clear_history)
         builder.setMessage(R.string.clear_history_scanned)
-        builder.setPositiveButton(R.string.yes) { dialog, which ->
+        builder.setPositiveButton(R.string.yes) { _, _ ->
             DBHandler(this.context!!).deleteData()
             txtShowNote.text = ""
         }
-        builder.setNegativeButton(R.string.no) { dialog, which ->
+        builder.setNegativeButton(R.string.no) { dialog, _ ->
             dialog.cancel()
         }
         val dialog: AlertDialog = builder.create()

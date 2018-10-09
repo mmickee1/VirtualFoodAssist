@@ -12,7 +12,7 @@ import com.google.ar.sceneform.ux.ArFragment
 
 class AugmentedImageFragment: ArFragment(){
 
-    private val SAMPLE_IMAGE_DATABASE ="sample_database.imgdb"
+   // private val SAMPLE_IMAGE_DATABASE ="sample_database.imgdb"
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -31,7 +31,7 @@ class AugmentedImageFragment: ArFragment(){
     }
 
     private fun setupAugmentedImageDatabase(config: Config, session: Session?){
-        val augmentedImageDb: AugmentedImageDatabase
+        val augmentedImageDb = AugmentedImageDatabase(session)
         val assetManager = context!!.assets
 
         // Pasta
@@ -87,8 +87,6 @@ class AugmentedImageFragment: ArFragment(){
         val pizza10 = assetManager.open("pizza/pizza10.jpg")
         val augmentedImageBitmapPizza10 = BitmapFactory.decodeStream(pizza10)
 
-
-        augmentedImageDb = AugmentedImageDatabase(session)
 
         augmentedImageDb.addImage("pasta1", augmentedImageBitmapPasta1)
         augmentedImageDb.addImage("pasta2", augmentedImageBitmapPasta2)

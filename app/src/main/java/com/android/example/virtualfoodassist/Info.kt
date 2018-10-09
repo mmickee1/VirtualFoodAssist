@@ -9,10 +9,6 @@ import android.view.*
 
 class Info : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.info, container, false)
         setUpActionBar()
@@ -21,17 +17,13 @@ class Info : Fragment() {
 
     private fun setUpActionBar() {
         (activity as AppCompatActivity).supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
         (activity as AppCompatActivity).setTitle(R.string.general_app_information)
         setHasOptionsMenu(true)
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.getItemId()) {
+        when (item!!.itemId) {
             android.R.id.home
             -> {
                 val i = Intent(activity, MainActivity::class.java)

@@ -1,5 +1,6 @@
 package com.android.example.virtualfoodassist
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -9,11 +10,10 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
-import android.location.*
-import android.location.LocationListener
-import android.os.Build
+import android.location.Address
+import android.location.Geocoder
+import android.location.Location
 import android.os.Bundle
-import android.support.annotation.RequiresApi
 import android.support.design.widget.FloatingActionButton
 import android.support.v4.app.ActivityCompat
 import android.support.v7.app.AppCompatActivity
@@ -23,6 +23,10 @@ import android.view.animation.Animation
 import android.view.animation.RotateAnimation
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import com.android.example.virtualfoodassist.RetroFit.Common
+import com.android.example.virtualfoodassist.RetroFit.IGoogleApiServices
+import com.android.example.virtualfoodassist.RetroFit.MyPlaces
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException
 import com.google.android.gms.common.GooglePlayServicesRepairableException
 import com.google.android.gms.common.api.ResolvableApiException
@@ -37,9 +41,13 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import kotlinx.android.synthetic.main.location_google.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.io.IOException
 
-class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+@Suppress("DEPRECATION")
+class LocationGoogle : AppCompatActivity(), SensorEventListener, OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
 
     private lateinit var mMap: GoogleMap
@@ -49,22 +57,27 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
     private lateinit var locationRequest: LocationRequest
     private var locationUpdateState = false
 
+    private lateinit var mService: IGoogleApiServices
+    private var latitudex: Double = 0.toDouble()
+    private var longitudex: Double = 0.toDouble()
+    private lateinit var currentMyPlace: MyPlaces
+
 
     private var imageCompass: ImageView? = null
     private var currentDegree = 0f
     private var mCompassSensorManager: SensorManager? = null
-    internal lateinit var degrees: TextView
+    lateinit var degrees: TextView
 
     override fun onCreate(savedInstanseBundle: Bundle?) {
         super.onCreate(savedInstanseBundle)
         setContentView(R.layout.location_google)
         setUpActionBar()
 
-        val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        //val lm = getSystemService(Context.LOCATION_SERVICE) as LocationManager
 
 
-        imageCompass = findViewById(R.id.img_compass) as ImageView
-        degrees = findViewById(R.id.txt_angle) as TextView
+        imageCompass = findViewById(R.id.img_compass)
+        degrees = findViewById(R.id.txt_angle)
         mCompassSensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
 
@@ -78,6 +91,8 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
                 super.onLocationResult(p0)
 
                 lastLocation = p0.lastLocation
+                latitudex = lastLocation.latitude
+                longitudex = lastLocation.longitude
                 placeMarkerOnMap(LatLng(lastLocation.latitude, lastLocation.longitude))
             }
         }
@@ -86,6 +101,12 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
         fab.setOnClickListener {
             loadPlacePicker()
         }
+        val fab2 = findViewById<FloatingActionButton>(R.id.fab2)
+        fab2.setOnClickListener {
+            nearByPlace("market")
+        }
+
+        mService = Common.googlePlayService
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
@@ -93,7 +114,7 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
         // val myPlace = LatLng(60.17, 24.95)
         //mMap.addMarker(MarkerOptions().position(myPlace).title("Marker in Hki"))
         //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myPlace, 12.0f))
-        mMap.getUiSettings().setZoomControlsEnabled(true)
+        mMap.uiSettings.isZoomControlsEnabled = true
         mMap.setOnMarkerClickListener(this)
 
         setUpMap()
@@ -109,32 +130,6 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
         setTitle(R.string.location)
         //setHasOptionsMenu(true)
     }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onLocationChanged(p0: Location?) {
-        Log.d("GEOLOCATION", "new latitude: ${p0?.latitude} and longitude: ${p0?.longitude}")
-
-        val latitude = p0!!.latitude
-        val longitude = p0.longitude
-        val speed = p0.speed
-        val speedMS = p0.speedAccuracyMetersPerSecond
-
-        val lat = "%.2f".format(latitude)
-        val lon = "%.2f".format(longitude)
-        val sms = "%.2f".format(speedMS)
-
-        txt_map_info.text = getString(R.string.latitude) + " ${lat}, " + getString(R.string.longitude) + " ${lon}," + getString(R.string.speed) + " ${sms} m/s"
-    }
-
-    override fun onStatusChanged(p0: String?, p1: Int, p2: Bundle?) {
-    }
-
-    override fun onProviderEnabled(p0: String?) {
-    }
-
-    override fun onProviderDisabled(p0: String?) {
-    }
-
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
         when (item!!.itemId) {
@@ -164,6 +159,7 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
         mCompassSensorManager!!.unregisterListener(this)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onSensorChanged(event: SensorEvent) {
         // get the angle around the z-axis rotated
         val degree = Math.round(event.values[0]).toFloat()
@@ -205,7 +201,7 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
             if (location != null) {
                 lastLocation = location
                 val currentLatLng = LatLng(location.latitude, location.longitude)
-                txt_map_info.text = getString(R.string.last_loc) + getAddress(currentLatLng)
+               // txt_map_info.text = getString(R.string.last_loc) + getAddress(currentLatLng)
                 placeMarkerOnMap(currentLatLng)
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
             }
@@ -284,6 +280,7 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
         fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, null)
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_CHECK_SETTINGS) {
@@ -297,6 +294,7 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
                 val place = PlacePicker.getPlace(this, data)
                 var addressText = place.name.toString()
                 addressText += "\n" + place.address.toString()
+                txt_map_info.text = getString(R.string.last_searched_loc) + addressText
 
                 placeMarkerOnMap(place.latLng)
             }
@@ -313,6 +311,64 @@ class LocationGoogle : AppCompatActivity(), LocationListener, SensorEventListene
         } catch (e: GooglePlayServicesNotAvailableException) {
             e.printStackTrace()
         }
+    }
+
+
+    //RETROFIT STUFF
+    private fun nearByPlace(store: String) {
+        //get rid of markers...if needed..
+        mMap.clear()
+
+        val url = getUrl(latitudex, longitudex, store)
+
+        mService.getNearByPlaces(url).enqueue(object : Callback<MyPlaces> {
+            override fun onFailure(call: Call<MyPlaces>, t: Throwable) {
+                Toast.makeText(baseContext, "failz!", Toast.LENGTH_SHORT).show()
+            }
+
+            override fun onResponse(call: Call<MyPlaces>, response: Response<MyPlaces>) {
+                currentMyPlace = response.body()!!
+
+                if (response.isSuccessful){
+                    for (i in 0 until response.body()!!.results!!.size){
+                        val markerOptions = MarkerOptions()
+                        val googlePlace = response.body()!!.results!![i]
+                        val lat = googlePlace.geometry!!.location!!.lat
+                        val lng = googlePlace.geometry!!.location!!.lng
+                        val placeName = googlePlace.name
+                        val latLng = LatLng(lat, lng)
+
+                        markerOptions.position(latLng)
+                        markerOptions.title(placeName)
+                        if (store == "market")
+                            markerOptions.icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_store))
+                        else
+                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE))
+                        markerOptions.snippet(i.toString()) // Assign index for market
+
+                        //Add marker to map
+                        mMap.addMarker(markerOptions)
+                        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng))
+                        mMap.animateCamera(CameraUpdateFactory.zoomTo(11f))
+
+                    }
+                }
+            }
+
+        })
+
+    }
+
+    private fun getUrl(latitude: Double, longitude: Double, store: String): String {
+        val googlePlaceUrl = StringBuilder("https://maps.googleapis.com/maps/api/place/nearbysearch/json")
+        googlePlaceUrl.append("?location=$latitude, $longitude")
+        googlePlaceUrl.append("&radius=1500")
+        googlePlaceUrl.append("&type=$store")
+        googlePlaceUrl.append("&name=food market")
+        googlePlaceUrl.append("&key=AIzaSyBtBavzEL_Iv1r6UucLBlB0uURtCyO6zVo")
+
+        Log.d("URL_DEBUG", googlePlaceUrl.toString())
+        return googlePlaceUrl.toString()
     }
 
 }

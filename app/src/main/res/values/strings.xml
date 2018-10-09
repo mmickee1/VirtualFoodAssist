@@ -34,6 +34,8 @@
     <string name="lon">lon:</string>
     <string name="speed">Speed:</string>
     <string name="last_loc">Last checked location: </string>
+    <string name="last_searched_loc">Last searched location: </string>
+    <string name="search">search</string>
 
 
 </resources>

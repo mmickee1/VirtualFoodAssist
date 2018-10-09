@@ -10,7 +10,8 @@ val TABLE_NAME = "Food"
 val COL_NAME = "name"
 val COL_ID = "id"
 
-class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
+@Suppress("RedundantSemicolon")
+class DBHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
     override fun onCreate(db: SQLiteDatabase?) {
         val createTable = "CREATE TABLE " +
                 TABLE_NAME +
@@ -27,13 +28,13 @@ class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
     fun insertData(food: Food) {
         val db = this.writableDatabase
-        var cv = ContentValues()
+        val cv = ContentValues()
         cv.put(COL_NAME, food.name)
-        var result = db.insert(TABLE_NAME, null, cv)
+        db.insert(TABLE_NAME, null, cv)
     }
 
     fun readData(): MutableList<Food> {
-        var list: MutableList<Food> = ArrayList()
+        val list: MutableList<Food> = ArrayList()
 
         val db = this.readableDatabase
         val query = "SELECT * FROM " + TABLE_NAME
@@ -41,7 +42,7 @@ class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
 
         if (result.moveToFirst()) {
             do {
-                var food = Food()
+                val food = Food()
                 food.id = result.getString(result.getColumnIndex(COL_ID)).toInt()
                 food.name = result.getString(result.getColumnIndex(COL_NAME))
                 list.add(food)
@@ -63,14 +64,15 @@ class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
     }
 
 
-    fun updateData() {
+    //currently not using sql updater..
+   /* fun updateData() {
         val db = this.writableDatabase
         val query = "SELECT * FROM " + TABLE_NAME
         val result = db.rawQuery(query, null)
 
         if (result.moveToFirst()) {
             do {
-                var cv = ContentValues()
+                val cv = ContentValues()
                 db.update(TABLE_NAME, cv, COL_ID + "=? AND " + COL_NAME + "=?",
                         arrayOf(result.getString(result.getColumnIndex(COL_ID)), result.getString(result.getColumnIndex(COL_NAME))))
             } while (result.moveToNext())
@@ -78,5 +80,5 @@ class DBHandler(var context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,
         result.close()
         db.close()
 
-    }
+    }*/
 }

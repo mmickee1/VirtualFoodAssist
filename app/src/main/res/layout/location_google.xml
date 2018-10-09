@@ -29,8 +29,20 @@
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
         android:layout_margin="8dp"
-        android:contentDescription="@string/findstore"
+        android:layout_above="@+id/fab2"
+        android:contentDescription="@string/search"
         android:src="@android:drawable/ic_menu_search"
+        tools:ignore="RelativeOverlap" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:contentDescription="@string/findstore"
+        android:src="@android:drawable/ic_menu_directions"
         tools:ignore="RelativeOverlap" />
 
     <RelativeLayout
