@@ -17,6 +17,7 @@ import com.google.ar.sceneform.rendering.ModelRenderable
 import com.google.ar.sceneform.ux.ArFragment
 import com.google.ar.sceneform.ux.TransformableNode
 import kotlinx.android.synthetic.main.ar_fragment.*
+import kotlinx.android.synthetic.main.location_google.*
 
 @Suppress("WHEN_ENUM_CAN_BE_NULL_IN_JAVA", "CanBeVal")
 class AugmentedReality : AppCompatActivity() {

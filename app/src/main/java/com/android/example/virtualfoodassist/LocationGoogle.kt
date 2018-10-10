@@ -105,8 +105,8 @@ class LocationGoogle : AppCompatActivity(), SensorEventListener, OnMapReadyCallb
         fab2.setOnClickListener {
             nearByPlace("market")
         }
-
         mService = Common.googlePlayService
+        //fab2.performClick()
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {
