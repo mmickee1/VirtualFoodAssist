@@ -13,38 +13,15 @@
                       <PersistentState>
                         <option name="children">
                           <map>
-                            <entry key="launcher">
-                              <value>
-                                <PersistentState>
-                                  <option name="values">
-                                    <map>
-                                      <entry key="foregroundLayerName" value="ic_home" />
-                                    </map>
-                                  </option>
-                                </PersistentState>
-                              </value>
-                            </entry>
                             <entry key="launcherLegacy">
                               <value>
                                 <PersistentState>
-                                  <option name="children">
-                                    <map>
-                                      <entry key="clipartAsset">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_home_black_24dp.xml" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                    </map>
-                                  </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_launcher_home" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="backgroundColor" value="2bf05f" />
+                                      <entry key="imageAsset" value="C:\Users\Kendy\Desktop\Koulu\3. Vuosi\project\launcher_icon.png" />
+                                      <entry key="outputName" value="ic_spaghooter" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -67,25 +44,7 @@
         </entry>
         <entry key="vectorWizard">
           <value>
-            <PersistentState>
-              <option name="children">
-                <map>
-                  <entry key="vectorAssetStep">
-                    <value>
-                      <PersistentState>
-                        <option name="values">
-                          <map>
-                            <entry key="assetSourceType" value="FILE" />
-                            <entry key="outputName" value="ic_baseline_home_24px" />
-                            <entry key="sourceFile" value="C:\Users\Kendy\Desktop\Koulu\VirtualFoodAssist\icons\baseline-home-24px.svg" />
-                          </map>
-                        </option>
-                      </PersistentState>
-                    </value>
-                  </entry>
-                </map>
-              </option>
-            </PersistentState>
+            <PersistentState />
           </value>
         </entry>
       </map>
